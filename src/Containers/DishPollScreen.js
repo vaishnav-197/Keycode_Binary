@@ -59,7 +59,7 @@ const DishPollScreen = () => {
 
   return (
     <>
-      <AppBar title="Choose Dish" />
+      <AppBar title="Choose Dish"  color={'orange'}/>
       <ScrollView style={styles.scrollViewContainer}>
         {restaurantDishes.map(restaurantDish => (
           <View key={restaurantDish.restaurantId}>

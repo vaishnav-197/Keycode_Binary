@@ -34,7 +34,7 @@ const MainContainer = ({ navigation }) => {
   return (
     <>
       <View style={styles.mainContainer}>
-        <AppBar title={'Events'} />
+        <AppBar title={'Events'} color={'blue'} />
         <View style={styles.searchBarWrapper}>
           <SearchBar />
         </View>
@@ -42,7 +42,7 @@ const MainContainer = ({ navigation }) => {
         <ScrollView style={styles.scrollView}>
           {data.isSuccess ? (
             <>
-              {data.data.map(event => {
+              {data?.data?.map(event => {
                 return (
                   <>
                     <View style={styles.cardWrapper}>
