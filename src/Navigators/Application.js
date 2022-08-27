@@ -7,13 +7,13 @@ import {
   SuggestionScreen,
   MainContainer,
   LoginScreen,
+  SummaryScreen,
+  DishPollScreen
 } from '../Containers/index'
 import { navigationRef } from './utils'
 import Summary from '@/Components/Summary'
 import AddParticpants from '@/Containers/AddParticipants'
 import VenueFixPoll from '@/Containers/VenueFixResult'
-import RestaurantSelection from '@/Containers/RestaurantSelection'
-import DishSelectionScreen from '@/Containers/DishSelectionScreen'
 
 const Stack = createStackNavigator()
 
@@ -24,37 +24,16 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen
-            name="RestaurantSelection"
-            component={RestaurantSelection}
+        <Stack.Screen
+            name="MainContainer"
+            component={MainContainer}
             options={{
               animationEnabled: false,
             }}
           />
-          <Stack.Screen
-            name="DishSelectionScreen"
-            component={DishSelectionScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="VenueScreen"
-            component={VenueScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
+        <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="VenueFixPoll"
-            component={VenueFixPoll}
             options={{
               animationEnabled: false,
             }}
@@ -67,6 +46,42 @@ const ApplicationNavigator = () => {
             }}
           />
           <Stack.Screen
+            name="DishPollScreen"
+            component={DishPollScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="SummaryPage"
+            component={SummaryScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="SummaryScreen"
+            component={SummaryScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="VenueScreen"
+            component={VenueScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="VenueFixPoll"
+            component={VenueFixPoll}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
             name="SuggestionScreen"
             component={SuggestionScreen}
             options={{
@@ -74,22 +89,8 @@ const ApplicationNavigator = () => {
             }}
           />
           <Stack.Screen
-            name="MainContainer"
-            component={MainContainer}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
             name="FoodPollScreen"
             component={SuggestionScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="SummaryPage"
-            component={Summary}
             options={{
               animationEnabled: false,
             }}
