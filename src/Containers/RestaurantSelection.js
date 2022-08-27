@@ -4,6 +4,7 @@ import AppBar from '@/Components/AppBar'
 import ListCard from '@/Components/ListCard'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import RatingIcon from '@/Components/RatingIcon'
+import FloatingActionButton from '@/Components/FloatingActionButton'
 
 
 const RestaurantSelection = () => {
@@ -82,6 +83,9 @@ const RestaurantSelection = () => {
           ))}
         </View>
       </ScrollView>
+      <FloatingActionButton
+        icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
+      />
     </>
   )
 }

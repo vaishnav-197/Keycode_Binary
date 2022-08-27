@@ -1,109 +1,101 @@
-import AppBar from '@/Components/AppBar'
 import React, { useState } from 'react'
-import { ScrollView, View, Text, StyleSheet, TextInput } from 'react-native'
-import { Checkbox } from 'native-base'
-import { Layout } from '@/Theme/Layout'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import {
+  Button,
+  Image,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+} from 'react-native'
 import FloatingActionButton from '@/Components/FloatingActionButton'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { View } from 'native-base'
+import { Layout } from '@/Theme/Layout'
 import { Fonts } from '@/Theme/Fonts'
 import { Colors } from '@/Theme/Variables'
 
+
 const DishSelectionScreen = () => {
-  const [restaurantDishes, setRestaurantDishes] = useState([
-    {
-      restaurantId: 1,
-      restaurantName: 'test1',
-      dishes: [
-        {
-          id: 1,
-          name: 'dish name 1',
-        },
-        {
-          id: 2,
-          name: 'dish name 2',
-        },
-      ],
-    },
-    {
-      restaurantId: 2,
-      restaurantName: 'test2',
-      dishes: [
-        {
-          id: 3,
-          name: 'dish name 3',
-        },
-      ],
-    },
-  ])
+  const [restaurant, setRestaurant] = useState({
+    restaurantName: 'rest 1',
+    restaurantId: 1,
+    restaurantImage:
+      'https://img.traveltriangle.com/blog/wp-content/uploads/2018/04/the-rice-boat.jpg',
+    restaurantRating: 4,
+    location: 'Kochi',
+    rating: 1,
+    dishes: [
+      {
+        id: 3,
+        name: 'dish name 3',
+        rate: 10.0,
+      },
+      {
+        id: 4,
+        name: 'dish name 4',
+        rate: 20.0,
+      },
+    ],
+  })
   const [selectedDishes, setSelectedDishes] = useState([])
-
-  const handleSelect = dish => {
-    const isPresent = selectedDishes.find(
-      selectedDish => selectedDish.id == dish.id,
-    )
-
-    if (isPresent) {
-      setSelectedDishes(selectedDishes => {
-        const updatedSelectedDishes = selectedDishes.filter(
-          selectedDish => selectedDish.id != dish.id,
-        )
-        return updatedSelectedDishes
-      })
-    } else {
-      setSelectedDishes(selectedDishes => [
-        ...selectedDishes,
-        Object.assign(dish, { quantity: 0 }),
-      ])
-    }
-  }
 
   return (
     <>
-      <AppBar title="Choose Dish" />
-      <ScrollView style={styles.scrollViewContainer}>
-        {restaurantDishes.map(restaurantDish => (
-          <View key={restaurantDish.restaurantId}>
-            <Text
-              style={[
-                Fonts.titleSmallBold,
-                { marginTop: 20, marginBottom: 10 },
-              ]}
-            >
-              {restaurantDish.restaurantName}
-            </Text>
-            {restaurantDish.dishes.map(dish => {
-              const isSelected = selectedDishes.find(
-                selectedDish => selectedDish.id == dish.id,
-              )
-
-              return (
-                <View
-                  key={dish.id}
-                  style={[
-                    Layout.row,
-                    { marginBottom: 8, alignItems: 'center', height: 60 },
-                  ]}
-                >
-                  <View style={[Layout.row, { flex: 1 }]}>
-                    <Checkbox
-                      isChecked={isSelected ?? false}
-                      style={styles.marginRight}
-                      accessibilityLabel="Select dish"
-                      onChange={() => handleSelect(dish)}
-                    />
-                    <Text style={Fonts.textRegular}>{dish.name}</Text>
-                  </View>
-                  {isSelected && (
-                    <View style={[styles.quantityContainer, Layout.row]}>
-                      <Text style={Fonts.textRegular}>quantity: </Text>
-                      <TextInput style={styles.textInput} maxLength={3} />
-                    </View>
-                  )}
+      <ScrollView>
+        <View>
+          <ImageBackground
+            source={{ uri: restaurant.restaurantImage }}
+            style={[Layout.fill, styles.header]}
+            resizeMode="cover"
+          >
+            <View style={styles.overlay}>
+              <Text style={[Fonts.titleSmall, styles.headerText]}>
+                {restaurant.restaurantName}
+              </Text>
+            </View>
+          </ImageBackground>
+          <View style={styles.mainContainer}>
+            <Text style={[Fonts.titleSmallBold]}>Dishes</Text>
+            {restaurant.dishes.map(dish => (
+              <View
+                key={dish.id}
+                style={[
+                  Layout.row,
+                  {
+                    justifyContent: 'space-between',
+                    borderBottomWidth: 1,
+                    paddingVertical: 18,
+                    borderBottomColor: '#bbb',
+                    alignItems: 'center'
+                  },
+                ]}
+              >
+                <View>
+                  <Text style={Fonts.textRegularBold}>{dish.name}</Text>
+                  <Text>₹{dish.rate}</Text>
                 </View>
-              )
-            })}
+                <View>
+                  <Button 
+                    title={selectedDishes.includes(dish.id)? "Remove": "Add" } 
+                    color={selectedDishes.includes(dish.id)? Colors.error: Colors.primary} 
+                    onPress={() => {
+                      if(selectedDishes.includes(dish.id)) {
+                        setSelectedDishes(selectedDishes => {
+                          return selectedDishes.filter(selectedDish => selectedDish != dish.id)
+                        })
+                      } else {
+                        setSelectedDishes([
+                          ...selectedDishes,
+                          dish.id
+                        ])
+                      }
+                    }}
+                  />
+                </View>
+              </View>
+            ))}
           </View>
-        ))}
+        </View>
       </ScrollView>
       <FloatingActionButton
         icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
@@ -113,20 +105,23 @@ const DishSelectionScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  scrollViewContainer: {
+  header: {
+    height: 200,
+    flex: 1,
+  },
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    width: '100%',
+    height: 200,
+  },
+  headerText: {
+    color: '#fff',
+    position: 'absolute',
+    left: 16,
+    bottom: 8,
+  },
+  mainContainer: {
     padding: 16,
-  },
-  marginRight: {
-    marginRight: 8,
-  },
-  quantityContainer: {
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 120,
-  },
-  textInput: {
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.eventsPrimary,
   },
 })
 
