@@ -5,6 +5,8 @@ import { StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { CheckIcon } from 'native-base'
 import { Colors } from '@/Theme/Variables'
+import { Fonts } from '@/Theme/Fonts'
+import { Layout } from '@/Theme/Layout'
 
 const ListCard = ({
   imageSource,
@@ -26,7 +28,7 @@ const ListCard = ({
       >
         {isSelected && (
           <View style={styles.cardImageOverlay}>
-            <Text style={[{ color: '#fff' }]}>
+            <Text style={[Fonts.titleSmallBold, { color: '#fff' }]}>
               <CheckIcon size={'14'} color="#fff" />
             </Text>
           </View>
@@ -74,9 +76,9 @@ const ListCardImage = ({ imageSource }) => {
 const ListCardInfo = ({ title, caption, sideText, sideComponent }) => {
   return (
     <View style={styles.cardInfoStyle}>
-      <View>
-        <Text>{title}</Text>
-        {caption != '' && <Text>{caption}</Text>}
+      <View style={Layout.flexGrow}>
+        <Text style={Fonts.titleSmallBold}>{title}</Text>
+        {caption != '' && <Text style={Fonts.caption}>{caption}</Text>}
       </View>
       {sideText && (
         <View>

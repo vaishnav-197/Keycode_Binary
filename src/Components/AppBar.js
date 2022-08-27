@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { Fonts } from '@/Theme/Fonts'
 
 const AppBar = ({ title }) => {
   return (
     <View style={styles.appBarContainer}>
-      <Text>{title}</Text>
+      <Text style={Fonts.titleSmallBold}>{title}</Text>
     </View>
   )
 }

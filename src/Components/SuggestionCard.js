@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { Checkbox } from 'native-base';
 import { View, Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
+import { Layout } from '@/Theme/Layout'
+import { Fonts } from '@/Theme/Fonts'
 
 const SuggestionCard = ({
   name, 
@@ -12,8 +14,6 @@ const SuggestionCard = ({
   selectedList,
   onSelectItem
 }) => {
-  const { Layout, Fonts } = useTheme()
-
   return (
     <View style={styles.suggestionContainer}>
       <View style={[styles.suggestionHeader]}>
