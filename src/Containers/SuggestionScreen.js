@@ -1,8 +1,10 @@
 import AppBar from '@/Components/AppBar'
+import FloatingActionButton from '@/Components/FloatingActionButton'
 import SuggestionCard from '@/Components/SuggestionCard'
 import React, { useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const SuggestionScreen = () => {
   const [selectedDishes, setSelectedDishes] = useState({})
@@ -94,32 +96,40 @@ const SuggestionScreen = () => {
 
   return (
     <>
-      <AppBar title={'Dish Suggestions'} />
+      <AppBar
+        title={'Dish Suggestions'}
+        actions={[<Icon name="refresh" key={'test'} color="#000" size={22} />]}
+      />
       <ScrollView style={styles.scrollViewContainer}>
-        {userSuggestions.map(userSuggestion => {
-          console.log(
-            'Test: ' + userSuggestion.hotelId + JSON.stringify(selectedDishes),
-          )
-          return (
-            <SuggestionCard
-              name={userSuggestion.name}
-              hotelName={userSuggestion.hotelName}
-              itemsList={userSuggestion.dishes}
-              selectedList={selectedDishes[userSuggestion.hotelId] ?? []}
-              onSelectItem={handleSelect}
-              hotelId={userSuggestion.hotelId}
-              key={userSuggestion.name}
-            />
-          )
-        })}
+        {userSuggestions.map(userSuggestion => (
+          <SuggestionCard
+            name={userSuggestion.name}
+            hotelName={userSuggestion.hotelName}
+            itemsList={userSuggestion.dishes}
+            selectedList={selectedDishes[userSuggestion.hotelId] ?? []}
+            onSelectItem={handleSelect}
+            hotelId={userSuggestion.hotelId}
+            key={userSuggestion.name}
+          />
+        ))}
       </ScrollView>
+      <FloatingActionButton
+        icon={
+          <Icon
+            name="navigate-next"
+            color={'#fff'}
+            size={24}
+            style={styles.marginRight}
+          />
+        }
+      />
     </>
   )
 }
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
-    marginBottom: 50,
+    zIndex: 5,
   },
 })
 
