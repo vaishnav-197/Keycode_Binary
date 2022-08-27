@@ -1,10 +1,11 @@
 import { useTheme } from '@/Hooks';
 import React, { useEffect } from 'react'
-import { Checkbox } from 'native-base';
 import { View, Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { Layout } from '@/Theme/Layout'
 import { Fonts } from '@/Theme/Fonts'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
 
 const SuggestionCard = ({
   name, 
@@ -30,12 +31,7 @@ const SuggestionCard = ({
             key={item.id} 
             style={[Layout.row, { alignItems: 'center', marginLeft: 16, marginBottom: 8 }]}
           >
-            <Checkbox
-              isChecked={selectedList.includes(item.id)}
-              style={styles.marginRight}
-              accessibilityLabel="Select dish"
-              onChange={() => onSelectItem(item.id, hotelId)}
-            />
+            <Icon name="circle" key={"test"} color="#000" size={10} style={styles.marginRight} />
             <Text> 
               {item.name}
             </Text>
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
     margin: 14,
   },
   suggestionHeader: {
-    backgroundColor: '#c04000',
+    backgroundColor: 'rgb(186, 1, 4)',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 16
