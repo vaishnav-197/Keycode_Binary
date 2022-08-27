@@ -16,11 +16,14 @@ import { changeTheme } from '@/Store/Theme'
 import ListCard from '@/Components/ListCard'
 import SuggestionCard from '@/Components/SuggestionCard'
 import BottomNavigationBar from '../Components/BottomNavigationBar'
+import AppBar from '../Components/AppBar'
+import SearchBar from '../Components/SearchBar'
 
-const EventScreen = () => {
+const VenueScreen = () => {
   return (
     <View>
-      <Text>hii</Text>
+      <AppBar title={'Venue'}/>
+      <SearchBar />
     </View>
   )
 }
@@ -29,4 +32,4 @@ const styles = StyleSheet.create({
   topBanner:{},
 })
 
-export default EventScreen;
+export default VenueScreen;

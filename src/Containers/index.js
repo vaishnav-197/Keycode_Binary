@@ -1,2 +1,2 @@
 export { default as MainContainer } from './MainContainer'
-export { default as EventScreen } from './EventScreen'
+export { default as VenueScreen } from './VenueScreen'

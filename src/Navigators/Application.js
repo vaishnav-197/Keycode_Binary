@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { StartupContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
 import { MainContainer } from '../Containers/index'
-import { EventScreen } from '../Containers/index'
+import { VenueScreen } from '../Containers/index'
 import { navigationRef } from './utils'
 
 const Stack = createStackNavigator()
@@ -22,8 +22,8 @@ const ApplicationNavigator = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {/* <Stack.Screen name="Startup" component={StartupContainer} /> */}
           <Stack.Screen
-            name="EventScreen"
-            component={EventScreen}
+            name="VenueScreen"
+            component={VenueScreen}
             options={{
               animationEnabled: false,
             }}
