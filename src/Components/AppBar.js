@@ -8,20 +8,18 @@ const AppBar = ({ title, actions }) => {
   return (
     <View style={[styles.appBarContainer, Layout.row]}>
       <Text style={[Fonts.titleSmallBold, styles.appBarTitle]}>{title}</Text>
-      <View>
-        {actions.map(action => action)}
-      </View>
+      <View>{actions.map(action => action)}</View>
     </View>
   )
 }
 
 AppBar.propTypes = {
   title: PropTypes.string,
-  actions: PropTypes.array
+  actions: PropTypes.array,
 }
 
 AppBar.defaultProps = {
-  actions: []
+  actions: [],
 }
 
 const styles = StyleSheet.create({
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 })
 

@@ -94,11 +94,15 @@ const SuggestionScreen = () => {
           />
         ))}
       </ScrollView>
-      <FloatingActionButton icon={<Icon name="navigate-next"
-          color={'#fff'}
-          size={24}
-          style={styles.marginRight} 
-          />} 
+      <FloatingActionButton
+        icon={
+          <Icon
+            name="navigate-next"
+            color={'#fff'}
+            size={24}
+            style={styles.marginRight}
+          />
+        }
       />
     </>
   )
@@ -106,7 +110,6 @@ const SuggestionScreen = () => {
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
-    zIndex: 5,
   },
 })
 
