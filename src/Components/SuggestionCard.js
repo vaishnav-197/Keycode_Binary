@@ -9,8 +9,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const SuggestionCard = ({
   name, 
-  hotelName, 
-  hotelId,
+  restaurantName, 
+  restaurantId,
   itemsList,
   selectedList,
   onSelectItem
@@ -22,7 +22,7 @@ const SuggestionCard = ({
             <Text style={[Fonts.caption, Fonts.whiteText]}>{name}</Text>
             <Text style={[Fonts.caption, Fonts.whiteText, { marginLeft: 2 }]}>suggests</Text>
           </View>
-        <Text style={[Fonts.titleSmall, styles.hotelName, Fonts.whiteText]}>{hotelName}</Text>
+        <Text style={[Fonts.titleSmall, styles.restaurantName, Fonts.whiteText]}>{restaurantName}</Text>
       </View>
       <View style={styles.suggestionBody}>
         <Text style={[Fonts.caption, { marginBottom: 5 }]}>Items: </Text>
@@ -44,14 +44,14 @@ const SuggestionCard = ({
 
 SuggestionCard.propTypes = {
   name: PropTypes.string,
-  hotelName: PropTypes.string,
+  restaurantName: PropTypes.string,
   itemsList: PropTypes.array,
   selectedList: PropTypes.array
 }
 
 SuggestionCard.defaultProps = {
   name: '',
-  hotelName: '',
+  restaurantName: '',
   itemsList: [],
   selectedList: []
 }
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     padding: 16
   },
-  hotelName: {
+  restaurantName: {
     fontSize: 14
   },
   suggestionBody: {

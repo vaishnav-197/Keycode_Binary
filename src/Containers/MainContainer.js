@@ -40,6 +40,7 @@ const MainContainer = ({ navigation }) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    marginBottom: 50
   },
   searchBarWrapper: {
     marginTop: 15,
