@@ -1,10 +1,12 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
 
-const FloatingActionButton = ({ icon }) => {
+const FloatingActionButton = ({ icon, onPress }) => {
   return (
     <View style={styles.floatingActionButton}>
-      { icon }
+      <TouchableOpacity onPress={onPress}>
+        { icon }
+      </TouchableOpacity>
     </View>
   )
 }
