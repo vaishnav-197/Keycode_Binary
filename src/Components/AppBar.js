@@ -4,10 +4,10 @@ import { Fonts } from '@/Theme/Fonts'
 import PropTypes from 'prop-types'
 import { Layout } from '@/Theme/Layout'
 
-const AppBar = ({ title, actions }) => {
+const AppBar = ({ title, actions, color }) => {
   return (
-    <View style={[styles.appBarContainer, Layout.row]}>
-      <Text style={[Fonts.titleSmallBold, styles.appBarTitle]}>{title}</Text>
+    <View style={[styles.appBarContainer, Layout.row, color === 'blue' ? {backgroundColor: 'rgb(78,128,228)'}:{backgroundColor: 'rgb(220,48,86)'}]}>
+      <Text style={[Fonts.titleSmallBold, styles.appBarTitle, {color: 'white'}]}>{title}</Text>
       <View>{actions.map(action => action)}</View>
     </View>
   )
@@ -23,6 +23,17 @@ AppBar.defaultProps = {
 }
 
 const styles = StyleSheet.create({
+  appBarContainer: {
+    width: '100%',
+    height: 60,
+    backgroundColor: '#fff',
+    top: 0,
+    left: 0,
+    paddingLeft: 16,
+    paddingRight: 16,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   appBarContainer: {
     width: '100%',
     height: 60,

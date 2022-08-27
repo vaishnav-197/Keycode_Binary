@@ -7,7 +7,8 @@ import {
   SuggestionScreen,
   MainContainer,
   LoginScreen,
-  SummaryScreen
+  SummaryScreen,
+  DishPollScreen
 } from '../Containers/index'
 import { navigationRef } from './utils'
 import Summary from '@/Components/Summary'
@@ -23,9 +24,30 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+            name="MainContainer"
+            component={MainContainer}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+        <Stack.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="AddParticpants"
             component={AddParticpants}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="DishPollScreen"
+            component={DishPollScreen}
             options={{
               animationEnabled: false,
             }}
@@ -51,20 +73,7 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
-          <Stack.Screen
-            name="MainContainer"
-            component={MainContainer}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="LoginScreen"
-            component={LoginScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
+
           <Stack.Screen
             name="VenueFixPoll"
             component={VenueFixPoll}
@@ -72,7 +81,6 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
-
           <Stack.Screen
             name="SuggestionScreen"
             component={SuggestionScreen}

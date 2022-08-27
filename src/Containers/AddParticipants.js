@@ -43,7 +43,7 @@ const AddParticpants = ({ navigation }) => {
 
   return (
     <View style={styles.appContainer}>
-      <AppBar title="Add Decision Makers" />
+      <AppBar title="Add Decision Makers" color={'blue'}/>
       <ScrollView>
         <View style={styles.pageHeading}>
           <Text style={styles.pageHeadingText}>Add Participants to Poll</Text>
@@ -103,7 +103,6 @@ const AddParticpants = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   appContainer: {
-    paddingTop: 10,
     paddingBottom: 20,
     flex: 1,
   },
