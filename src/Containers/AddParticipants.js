@@ -66,27 +66,24 @@ const AddParticpants = ({ navigation }) => {
             <Text style={styles.goalsHeading}>Participants</Text>
           </View>
 
-          <ScrollView>
-          {data.isSuccess &&
-            data.data.map(venue => {
+          <FlatList
+            data={participants}
+            renderItem={itemData => {
               return (
-                <ListCard
-                  caption={venue.location}
-                  sideText={'Capacity :' + venue.capacity}
-                  title={venue.name}
-                  sideComponent={venue.rating}
-                  imageSource={venue.image}
-                />
+                <TouchableOpacity
+                  onPress={deleteParticipantHandler.bind(
+                    this,
+                    itemData.item.id,
+                  )}
+                >
+                  <View>
+                    <Text style={styles.goals}>{itemData.item.item} </Text>
+                  </View>
+                </TouchableOpacity>
               )
-            })}
-            <TouchableOpacity
-              onPress={deleteParticipantHandler.bind(this, itemData.item.id)}
-            >
-              <View>
-                <Text style={styles.goals}>{itemData.item.item} </Text>
-              </View>
-            </TouchableOpacity>
-          </ScrollView>
+            }}
+            keyExtractor={item => item.id}
+          />
         </View>
       </ScrollView>
       <View>
@@ -108,7 +105,6 @@ const AddParticpants = ({ navigation }) => {
 const styles = StyleSheet.create({
   appContainer: {
     paddingTop: 10,
-    paddingHorizontal: 50,
     paddingBottom: 20,
     flex: 1,
   },
@@ -126,6 +122,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     margin: 10,
+    paddingHorizontal: 10,
   },
   textInput: {
     borderWidth: 1,
