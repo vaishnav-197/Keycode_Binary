@@ -4,7 +4,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 
-const EventScreen = () => {
+const UpcomingEventScreen = () => {
   const events = [
     {
       name: 'User1\'s Birthday',
@@ -26,6 +26,7 @@ const EventScreen = () => {
           return (
             <EventCard
               event={event}
+              key={event.id}
             />
           )
         })}
@@ -40,5 +41,5 @@ const styles = StyleSheet.create({
   },
 })
 
-export default EventScreen
+export default UpcomingEventScreen
  
