@@ -30,11 +30,15 @@ const VenueScreen = () => {
         <SearchBar />
         </View>
         <View style={styles.iconWrapepr}>
-        <Icon 
-          name="filter-list" 
-          color={'black'} 
-          size={20} 
-        />
+          <TouchableOpacity style={styles.buttonStyle} onPress={()=>{
+            alert('hii')
+          }}>
+          <Icon 
+            name="filter-list" 
+            color={'black'} 
+            size={20} 
+          />
+        </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -55,6 +59,8 @@ const styles = StyleSheet.create({
   },
   searchWrapper: {
     flex: 1
+  },
+  buttonStyle: {
   }
 })
 
