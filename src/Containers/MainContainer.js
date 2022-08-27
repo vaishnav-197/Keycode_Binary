@@ -1,14 +1,38 @@
-import React from 'react'
-import { View, StyleSheet, ScrollView, Text } from 'react-native'
+import React, { useEffect } from 'react'
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+} from 'react-native'
 import BottomNavigationBar from '@/Components/BottomNavigationBar'
 import ListCard from '@/Components/ListCard'
 import SearchBar from '@/Components/searchBar'
 import AppBar from '@/Components/AppBar'
 
-const MainContainer = ({ navigation }) => {
-  const handleDiningSelect = () => {}
+// Api
+import { useGetEventTypeMutation } from '@/Api/apiSlice'
+import { GetApiHelper } from '@/Api/apiSlice'
 
+const MainContainer = ({ navigation }) => {
+  const [getEventType, data] = useGetEventTypeMutation()
+
+  const handleDiningSelect = () => {}
   const handleEventsSelect = () => {}
+
+  const fetchApi = async () => {
+    const body = GetApiHelper('eventType', {})
+    try {
+      await getEventType(body)
+    } catch (error) {
+      console.error('Failed to Fetch: ', error)
+    }
+  }
+
+  useEffect(() => {
+    fetchApi()
+  }, [])
 
   return (
     <>
@@ -18,15 +42,22 @@ const MainContainer = ({ navigation }) => {
           <SearchBar />
         </View>
         <ScrollView style={styles.scrollView}>
-          <View style={styles.cardWrapper}>
-            <ListCard title="Tech Event" />
-          </View>
-          <View style={styles.cardWrapper}>
-            <ListCard title="Tech Event" />
-          </View>
-          <View style={styles.cardWrapper}>
-            <ListCard title="Tech Event" />
-          </View>
+          {data.isSuccess ? (
+            <>
+              {data.data.map(event => {
+                return (
+                  <>
+                    {console.log(event)}
+                    <View style={styles.cardWrapper}>
+                      <ListCard title={event.name} imageSource={event.image} />
+                    </View>
+                  </>
+                )
+              })}
+            </>
+          ) : (
+            <></>
+          )}
         </ScrollView>
       </View>
       <BottomNavigationBar
@@ -40,6 +71,7 @@ const MainContainer = ({ navigation }) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    marginBottom: 50
   },
   searchBarWrapper: {
     marginTop: 15,

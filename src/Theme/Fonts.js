@@ -24,6 +24,11 @@ export const Fonts = StyleSheet.create({
     fontSize: FontSize.large,
     color: Colors.text,
   },
+  textRegularBold: {
+    fontSize: FontSize.regular,
+    color: Colors.text,
+    fontWeight: 'bold',
+  },
   titleSmallBold: {
     fontSize: FontSize.small,
     color: Colors.text,

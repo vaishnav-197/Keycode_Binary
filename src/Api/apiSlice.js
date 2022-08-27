@@ -1,20 +1,28 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
+export const GetApiHelper = (context, filter) => {
+  const body = {
+    context,
+    filter: filter,
+  }
+  return body
+}
+
 // Define our single API slice object
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://jsonplaceholder.typicode.com/',
+    baseUrl: 'https://shaky-comics-repair-103-142-31-94.loca.lt/',
   }),
-  // The "endpoints" represent operations and requests for this server
   endpoints: builder => ({
-    // The `getPosts` endpoint is a "query" operation that returns data
-    getPosts: builder.query({
-      // The URL for the request is '/fakeApi/posts'
-      query: () => '/users',
+    getEventType: builder.mutation({
+      query: body => ({
+        url: '/getinfo',
+        method: 'POST',
+        body: body,
+      }),
     }),
   }),
 })
-
 // Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetPostsQuery } = apiSlice
+export const { useGetEventTypeMutation } = apiSlice

@@ -68,7 +68,7 @@ ListCard.defaultProps = {
 const ListCardImage = ({ imageSource }) => {
   return (
     <View style={styles.cardImageContainer}>
-      <Image source={imageSource} style={styles.cardImage} />
+      <Image source={{ uri: imageSource }} style={styles.cardImage} />
     </View>
   )
 }
@@ -80,9 +80,9 @@ const ListCardInfo = ({ title, caption, sideText, sideComponent }) => {
         <Text style={Fonts.titleSmallBold}>{title}</Text>
         {caption != '' && <Text style={Fonts.caption}>{caption}</Text>}
       </View>
-      {sideText && (
+      {(sideText || sideComponent) && (
         <View>
-          {sideComponent}
+          <Text>{sideComponent}</Text>
           <Text>{sideText}</Text>
         </View>
       )}
