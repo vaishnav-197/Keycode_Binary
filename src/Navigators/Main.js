@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { ExampleContainer } from '@/Containers'
+import { MainContainer } from '@/Containers'
 
 const Tab = createBottomTabNavigator()
 
@@ -10,7 +10,7 @@ const MainNavigator = () => {
     <Tab.Navigator>
       <Tab.Screen
         name="Event"
-        component={ExampleContainer}
+        component={MainContainer}
         options={{
           tabBarIconStyle: { display: 'none' },
           tabBarLabelPosition: 'beside-icon',
@@ -18,7 +18,7 @@ const MainNavigator = () => {
       />
       <Tab.Screen
         name="Dining"
-        component={ExampleContainer}
+        component={MainContainer}
         options={{
           tabBarIconStyle: { display: 'none' },
           tabBarLabelPosition: 'beside-icon',

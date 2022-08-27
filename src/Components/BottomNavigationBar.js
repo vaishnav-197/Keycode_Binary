@@ -63,7 +63,7 @@ const BottomNavigationBar = ({ onSelectDining, onSelectEvents }) => {
 const styles = StyleSheet.create({
   bottomNavigationBarContainer: {
     position: 'absolute',
-    top: 20,
+    bottom: 0,
     left: 0,
     width: '100%',
     height: 50,

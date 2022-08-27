@@ -30,7 +30,7 @@ const ListCard = ({
         {isSelected && (
           <View style={styles.cardImageOverlay}>
             <Text style={[Fonts.titleSmallBold, { color: '#fff' }]}>
-              <CheckIcon size={'14'} color='#fff' />
+              <CheckIcon size={'14'} color="#fff" />
             </Text>
           </View>
         )}
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 30,
     borderWidth: 4,
-    borderColor: 'rgba(0, 0, 0, 0)'
+    borderColor: 'rgba(0, 0, 0, 0)',
   },
   selectedCardContainer: {
     borderColor: Colors.primary,
