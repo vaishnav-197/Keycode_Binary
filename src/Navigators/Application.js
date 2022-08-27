@@ -3,7 +3,7 @@ import { SafeAreaView, StatusBar } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainContainer } from '../Containers/index'
-import { VenueScreen } from '../Containers/index'
+import { VenueScreen, SummaryScreen } from '../Containers/index'
 import { navigationRef } from './utils'
 
 const Stack = createStackNavigator()
@@ -15,6 +15,13 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            name="SummaryScreen"
+            component={SummaryScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="VenueScreen"
             component={VenueScreen}
