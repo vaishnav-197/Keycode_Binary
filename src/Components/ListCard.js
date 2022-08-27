@@ -17,7 +17,6 @@ const ListCard = ({
   isSelected,
   onPressed,
   onLongPressed,
-  style
 }) => {
   return (
     <TouchableOpacity onLongPress={onLongPressed} onPress={onPressed}>
@@ -25,7 +24,6 @@ const ListCard = ({
         style={[
           styles.listCardContainer,
           isSelected && styles.selectedCardContainer,
-          ...style
         ]}
       >
         {isSelected && (

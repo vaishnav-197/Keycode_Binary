@@ -66,24 +66,27 @@ const AddParticpants = ({ navigation }) => {
             <Text style={styles.goalsHeading}>Participants</Text>
           </View>
 
-          <FlatList
-            data={participants}
-            renderItem={itemData => {
+          <ScrollView>
+          {data.isSuccess &&
+            data.data.map(venue => {
               return (
-                <TouchableOpacity
-                  onPress={deleteParticipantHandler.bind(
-                    this,
-                    itemData.item.id,
-                  )}
-                >
-                  <View>
-                    <Text style={styles.goals}>{itemData.item.item} </Text>
-                  </View>
-                </TouchableOpacity>
+                <ListCard
+                  caption={venue.location}
+                  sideText={'Capacity :' + venue.capacity}
+                  title={venue.name}
+                  sideComponent={venue.rating}
+                  imageSource={venue.image}
+                />
               )
-            }}
-            keyExtractor={item => item.id}
-          />
+            })}
+            <TouchableOpacity
+              onPress={deleteParticipantHandler.bind(this, itemData.item.id)}
+            >
+              <View>
+                <Text style={styles.goals}>{itemData.item.item} </Text>
+              </View>
+            </TouchableOpacity>
+          </ScrollView>
         </View>
       </ScrollView>
       <View>
