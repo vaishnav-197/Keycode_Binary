@@ -47,12 +47,12 @@ const ListCard = ({
 }
 
 ListCard.propTypes = {
-  title: PropTypes.string,
   caption: PropTypes.string,
-  sideComponent: PropTypes.node,
-  sideText: PropTypes.string,
   imageSource: PropTypes.any,
   isSelected: PropTypes.bool,
+  sideComponent: PropTypes.node,
+  sideText: PropTypes.string,
+  title: PropTypes.string,
 }
 
 ListCard.defaultProps = {
