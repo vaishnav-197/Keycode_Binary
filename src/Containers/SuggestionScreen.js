@@ -97,16 +97,20 @@ const SuggestionScreen = () => {
       <AppBar title={'Dish Suggestions'} />
       <ScrollView style={styles.scrollViewContainer}>
         {userSuggestions.map(userSuggestion => {
-          console.log("Test: " + userSuggestion.hotelId + JSON.stringify(selectedDishes))
-          return (<SuggestionCard
-            name={userSuggestion.name}
-            hotelName={userSuggestion.hotelName}
-            itemsList={userSuggestion.dishes}
-            selectedList={selectedDishes[userSuggestion.hotelId] ?? []}
-            onSelectItem={handleSelect}
-            hotelId={userSuggestion.hotelId}
-            key={userSuggestion.name}
-          />)
+          console.log(
+            'Test: ' + userSuggestion.hotelId + JSON.stringify(selectedDishes),
+          )
+          return (
+            <SuggestionCard
+              name={userSuggestion.name}
+              hotelName={userSuggestion.hotelName}
+              itemsList={userSuggestion.dishes}
+              selectedList={selectedDishes[userSuggestion.hotelId] ?? []}
+              onSelectItem={handleSelect}
+              hotelId={userSuggestion.hotelId}
+              key={userSuggestion.name}
+            />
+          )
         })}
       </ScrollView>
     </>
@@ -120,4 +124,3 @@ const styles = StyleSheet.create({
 })
 
 export default SuggestionScreen
- 

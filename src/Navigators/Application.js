@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native'
 import { MainContainer } from '../Containers/index'
 import { VenueScreen } from '../Containers/index'
 import { navigationRef } from './utils'
+import SuggestionScreen from '@/Containers/SuggestionScreen'
+import Summary from '@/Components/Summary'
+import AddParticpants from '@/Containers/AddParticipants'
 
 const Stack = createStackNavigator()
 
@@ -16,8 +19,8 @@ const ApplicationNavigator = () => {
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
-            name="VenueScreen"
-            component={VenueScreen}
+            name="AddParticpants"
+            component={AddParticpants}
             options={{
               animationEnabled: false,
             }}
@@ -30,8 +33,23 @@ const ApplicationNavigator = () => {
             }}
           />
           <Stack.Screen
-            name="Dining"
-            component={MainContainer}
+            name="VenueScreen"
+            component={VenueScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+
+          <Stack.Screen
+            name="FoodPollScreen"
+            component={SuggestionScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="SummaryPage"
+            component={Summary}
             options={{
               animationEnabled: false,
             }}
