@@ -15,6 +15,7 @@ import AppBar from '../Components/AppBar'
 const LoginScreen = () => {
 
   const [mobileNumber, setMobileNumber] = useState(false);
+  const [otp, setOtp] = useState('');
 
   const onPressLogin = () =>{
 
@@ -23,7 +24,11 @@ const LoginScreen = () => {
   return (
     <>
     <View style={styles.container}>
-      <Text style={styles.caption}>Enter Your Mobile No:</Text>
+      <Text style={styles.loginCaption}>LOGIN</Text>
+      <View style={styles.mobileWrapper}>
+      <Text style={styles.phone}>Phone</Text>
+      </View>
+      {/* <Text style={styles.caption}>Phone:</Text>
       <View style={styles.textView}>
         <TextInput
           style={styles.mobile}
@@ -32,59 +37,43 @@ const LoginScreen = () => {
           placeholder=""
         />
       </View>
+      <Text style={styles.caption}>OTP:</Text>
+      <View style={styles.textView}>
+        <TextInput
+          style={styles.mobile}
+          onChangeText={setOtp}
+          value={otp}
+          placeholder=""
+        />
+      </View>
       <View style={styles.buttonWrapper}>
         <TouchableOpacity style={styles.button} onPress={onPressLogin}>
           <Text style={styles.submitButton}>Login</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
     </>
   )
 }
 
 const styles = StyleSheet.create({
-  caption:{
-    fontWeight: '400',
-    fontSize: 20
+  loginCaption: {
+    color: 'rgba(0,0,0,0.8)',
+    fontSize: 20,
   },
   container: {
     height: '100%',
     width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center'
+    paddingHorizontal: 40,
+    paddingTop: 60,
   },
-  mobile: {
-    width: '100%',
+  mobileWrapper:{
+    marginTop: 20
   },
-  buttonWrapper: {
-    marginTop: 20,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  textView:{
-    width: 200,
-    height: 50,
-    borderWidth: 2,
-    borderColor: 'rgba(0,0,0,0.2)',
-    borderRadius: 20,
-    marginTop: 20,
-    paddingHorizontal: 10,
-    justifyContent: 'center',
-  },
-  button: {
-    height: 50,
-    width: 200,
-    borderRadius: 20,
-    backgroundColor: '#2E279D',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  submitButton: {
-    color: 'white',
-    fontSize: 30,
-    fontWeight: '100',
-  },
+  phone:{
+    color: 'rgba(0,0,0,0.8)',
+    fontSize: 15,
+  }
 })
 
 export default LoginScreen;

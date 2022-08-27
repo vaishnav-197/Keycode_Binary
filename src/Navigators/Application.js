@@ -7,6 +7,7 @@ import {
   SuggestionScreen,
   MainContainer,
   LoginScreen,
+  SummaryScreen
 } from '../Containers/index'
 import { navigationRef } from './utils'
 import Summary from '@/Components/Summary'
@@ -25,6 +26,20 @@ const ApplicationNavigator = () => {
           <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="SummaryPage"
+            component={SummaryScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="SummaryScreen"
+            component={SummaryScreen}
             options={{
               animationEnabled: false,
             }}
@@ -67,13 +82,6 @@ const ApplicationNavigator = () => {
           <Stack.Screen
             name="FoodPollScreen"
             component={SuggestionScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="SummaryPage"
-            component={Summary}
             options={{
               animationEnabled: false,
             }}
