@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  StyleSheet,
 } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -15,13 +16,13 @@ import { useLazyFetchOneQuery } from '@/Services/modules/users'
 import { changeTheme } from '@/Store/Theme'
 import ListCard from '@/Components/ListCard'
 
-const ExampleContainer = () => {
+const MainContainer = () => {
   const { t } = useTranslation()
   const { Common, Fonts, Gutters, Layout, Images } = useTheme()
   const dispatch = useDispatch()
 
   const [userId, setUserId] = useState('9')
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setIsSelected] = useState(false)
   const [fetchOne, { data, isSuccess, isLoading, isFetching, error }] =
     useLazyFetchOneQuery()
 
@@ -35,19 +36,24 @@ const ExampleContainer = () => {
 
   return (
     <>
-      <ListCard 
-        title="test" 
-        caption='test' 
-        imageSource={Images.logo} 
-        sideText='side text'
+      <View style={styles.topBanner}>
+        <View>
+          <Text>Location</Text>
+        </View>
+      </View>
+      <ListCard
+        title="test"
+        caption="test"
+        imageSource={Images.logo}
+        sideText="side text"
         sideComponent={<Text>Ok</Text>}
         isSelected={isSelected}
         onLongPressed={() => {
-          setIsSelected(true);
+          setIsSelected(true)
         }}
         onPressed={() => {
-          if(isSelected) {
-            setIsSelected(false);
+          if (isSelected) {
+            setIsSelected(false)
           } else {
             // go to pressed item
           }
@@ -57,4 +63,8 @@ const ExampleContainer = () => {
   )
 }
 
-export default ExampleContainer
+const styles = StyleSheet.create({
+  topBanner:{},
+})
+
+export default MainContainer
