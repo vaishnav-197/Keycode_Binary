@@ -9,7 +9,7 @@ const MainNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Home"
+        name="Event"
         component={ExampleContainer}
         options={{
           tabBarIconStyle: { display: 'none' },
@@ -17,15 +17,7 @@ const MainNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="house"
-        component={ExampleContainer}
-        options={{
-          tabBarIconStyle: { display: 'none' },
-          tabBarLabelPosition: 'beside-icon',
-        }}
-      />
-            <Tab.Screen
-        name="asasd"
+        name="Dining"
         component={ExampleContainer}
         options={{
           tabBarIconStyle: { display: 'none' },
