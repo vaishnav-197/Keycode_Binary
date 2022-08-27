@@ -40,9 +40,10 @@ const VenueScreen = () => {
   }
 
   return (
+    <>
+    <AppBar title={'Venue'}/>
     <ScrollView style={styles.scrollView}
       contentContainerStyle={styles.contentContainerStyle}>
-      <AppBar title={'Venue'}/>
       <View style={styles.header}>
         <View style={styles.searchWrapper}>
         <SearchBar />
@@ -127,6 +128,7 @@ const VenueScreen = () => {
       }
       </View>
     </ScrollView>
+    </>
   )
 }
 

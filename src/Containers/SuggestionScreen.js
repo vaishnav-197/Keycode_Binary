@@ -115,7 +115,6 @@ const SuggestionScreen = () => {
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
-    marginBottom: 50,
   },
 })
 

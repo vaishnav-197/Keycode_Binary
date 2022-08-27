@@ -4,8 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { StartupContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
-import { MainContainer } from '../Containers/index'
-import { VenueScreen } from '../Containers/index'
+import { VenueScreen, SuggestionScreen, MainContainer } from '../Containers/index'
 import { navigationRef } from './utils'
 
 const Stack = createStackNavigator()
@@ -24,6 +23,13 @@ const ApplicationNavigator = () => {
           <Stack.Screen
             name="VenueScreen"
             component={VenueScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="SuggestionScreen"
+            component={SuggestionScreen}
             options={{
               animationEnabled: false,
             }}
