@@ -1,5 +1,5 @@
-import { View, Text, Image } from 'react-native'
 import React from 'react'
+import { View, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useTheme } from '@/Hooks'
 import { StyleSheet } from 'react-native'
@@ -93,7 +93,6 @@ const ListCardInfo = ({ title, caption, sideText, sideComponent }) => {
 
 const styles = StyleSheet.create({
   listCardContainer: {
-    margin: 14,
     overflow: 'hidden',
     borderRadius: 30,
     borderWidth: 4,
