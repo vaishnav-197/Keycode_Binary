@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: 'rgba(0,0,0,0.5)',
     borderRadius: 5,
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
   },
