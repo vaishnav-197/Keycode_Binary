@@ -32,7 +32,7 @@ const AddParticpants = ({ navigation }) => {
         item: currentParticipant,
       },
     ])
-    setcurrentParticipant('')
+    setcurrentParticipant('');
   }
 
   const deleteParticipantHandler = id => {
@@ -65,7 +65,6 @@ const AddParticpants = ({ navigation }) => {
           <View>
             <Text style={styles.goalsHeading}>Participants</Text>
           </View>
-
           <FlatList
             data={participants}
             renderItem={itemData => {
@@ -130,6 +129,7 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     textAlign: 'center',
     borderRadius: 10,
+    height: 40
   },
   goalsContainer: {
     flex: 5,
