@@ -14,7 +14,7 @@ export const Colors = {
   inputBackground: '#FFFFFF',
   white: '#ffffff',
   text: '#212529',
-  primary: '#E14032',
+  primary: '#4D80E4',
   success: '#28a745',
   error: '#dc3545',
 }

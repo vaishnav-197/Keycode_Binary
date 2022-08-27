@@ -4,6 +4,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useTheme } from '@/Hooks'
 import { StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
+import { CheckIcon } from 'native-base'
+import { Colors } from '@/Theme/Variables'
 
 const ListCard = ({
   imageSource,
@@ -27,7 +29,9 @@ const ListCard = ({
       >
         {isSelected && (
           <View style={styles.cardImageOverlay}>
-            <Text style={[Fonts.titleSmallBold, { color: '#fff' }]}>✓</Text>
+            <Text style={[Fonts.titleSmallBold, { color: '#fff' }]}>
+              <CheckIcon size={'14'} color='#fff' />
+            </Text>
           </View>
         )}
         <ListCardImage imageSource={imageSource} />
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(0, 0, 0, 0)'
   },
   selectedCardContainer: {
-    borderColor: '#4D80E4',
+    borderColor: Colors.primary,
   },
   cardImageContainer: {
     borderTopLeftRadius: 30,
@@ -120,9 +124,9 @@ const styles = StyleSheet.create({
     right: 16,
     top: 16,
     borderRadius: 100,
-    width: 50,
-    height: 50,
-    backgroundColor: '#4D80E4',
+    width: 40,
+    height: 40,
+    backgroundColor: Colors.primary,
     zIndex: 5,
     display: 'flex',
     alignItems: 'center',
