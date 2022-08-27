@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const hotel = createSlice({
   name: 'hotel',
-  initialState: {},
+  initialState: {
+    hotel: [],
+  },
   reducers: {
     add: (state, action) => {
-      state.hotel.append(action.payload)
+      state.hotel = [...state.hotel, action.payload]
     },
     remove: (state, action) => {
       state.hotel = state.hotel.filter(item => {

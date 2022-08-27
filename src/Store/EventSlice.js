@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const venue = createSlice({
-  name: 'venue',
+export const event = createSlice({
+  name: 'event',
   initialState: {
-    venue: [],
+    value: ['1'],
   },
   reducers: {
     add: (state, action) => {
-      state.venue = state.venue.append(action.payload)
+      state.value = [...state.value, action.payload]
     },
     remove: (state, action) => {
-      state.venue = state.venue.filter(item => {
+      state.hotel = state.hotel.filter(item => {
         return item !== action.payload
       })
     },
@@ -18,6 +18,6 @@ export const venue = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { add, remove } = venue.actions
+export const { add, remove } = event.actions
 
-export default venue.reducer
+export default event.reducer

@@ -22,6 +22,13 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen
+            name="MainContainer"
+            component={MainContainer}
+            options={{
+              animationEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="AddParticpants"
             component={AddParticpants}
@@ -36,13 +43,7 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
-          <Stack.Screen
-            name="MainContainer"
-            component={MainContainer}
-            options={{
-              animationEnabled: false,
-            }}
-          />
+
           <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
