@@ -50,6 +50,8 @@ ListCard.propTypes = {
   caption: PropTypes.string,
   imageSource: PropTypes.any,
   isSelected: PropTypes.bool,
+  onLongPressed: PropTypes.func,
+  onPressed: PropTypes.func,
   sideComponent: PropTypes.node,
   sideText: PropTypes.string,
   title: PropTypes.string,
@@ -59,7 +61,9 @@ ListCard.defaultProps = {
   title: '',
   caption: '',
   sideText: '',
-  isSelected: true,
+  isSelected: false,
+  onPressed: () => {},
+  onLongPressed: () => {},
 }
 
 const ListCardImage = ({ imageSource }) => {
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: '100%',
-    height: 200,
+    height: 150,
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
   },
   cardInfoStyle: {
