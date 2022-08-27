@@ -37,9 +37,11 @@ const MainContainer = () => {
   return (
     <>
       <View style={styles.topBanner}>
-        <View>
-          <Text>Location</Text>
-        </View>
+        <Text>Location</Text>
+        <Text>name</Text>
+      </View>
+      <View style={styles.searchBarWrapper}>
+        <TextInput style={styles.searchBar} />
       </View>
       <ListCard
         title="test"
@@ -64,7 +66,19 @@ const MainContainer = () => {
 }
 
 const styles = StyleSheet.create({
-  topBanner:{},
+  topBanner: {
+    padding: 12,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  searchBarWrapper: {
+    paddingHorizontal: 12,
+  },
+  searchBar: {
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingLeft: 40,
+  },
 })
 
 export default MainContainer
