@@ -19,8 +19,8 @@ const SuggestionCard = ({name, hotelName, itemsList}) => {
       </View>
       <View style={styles.suggestionBody}>
         <Text style={[Fonts.caption, { marginBottom: 5 }]}>Items: </Text>
-        {itemsList.map((item) => (
-          <View style={[Layout.row, { alignItems: 'center', marginLeft: 16, marginBottom: 4 }]}>
+        {itemsList.map((item, index) => (
+          <View key={index} style={[Layout.row, { alignItems: 'center', marginLeft: 16, marginBottom: 4 }]}>
             <CircleIcon size={'1'} style={{ marginRight: 5 }} />
             <Text> 
               {item}
