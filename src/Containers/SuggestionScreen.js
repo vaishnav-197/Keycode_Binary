@@ -9,30 +9,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 const SuggestionScreen = () => {
   const [selectedDishes, setSelectedDishes] = useState({})
 
-  const handleSelect = (dishId, hotelId) => {
-    setSelectedDishes(selectedDishes => {
-      const updatedSelectedDishes = { ...selectedDishes }
-
-      if (selectedDishes[hotelId] && selectedDishes[hotelId].includes(dishId)) {
-        updatedSelectedDishes[hotelId] = updatedSelectedDishes[hotelId].filter(
-          id => id != dishId,
-        )
-      } else {
-        if (updatedSelectedDishes[hotelId]) {
-          updatedSelectedDishes[hotelId].push(dishId)
-        } else {
-          updatedSelectedDishes[hotelId] = [dishId]
-        }
-      }
-      return updatedSelectedDishes
-    })
-  }
-
   const userSuggestions = [
     {
       name: 'test',
-      hotelName: 'test',
-      hotelId: 1,
+      restaurantName: 'test',
+      restaurantId: 1,
       dishes: [
         {
           id: 1,
@@ -47,8 +28,8 @@ const SuggestionScreen = () => {
 
     {
       name: 'test2',
-      hotelName: 'test3',
-      hotelId: 2,
+      restaurantName: 'test3',
+      restaurantId: 2,
       dishes: [
         {
           id: 3,
@@ -63,8 +44,8 @@ const SuggestionScreen = () => {
 
     {
       name: 'test3',
-      hotelName: 'test3',
-      hotelId: 2,
+      restaurantName: 'test3',
+      restaurantId: 2,
       dishes: [
         {
           id: 3,
@@ -79,8 +60,8 @@ const SuggestionScreen = () => {
 
     {
       name: 'test4',
-      hotelName: 'test3',
-      hotelId: 2,
+      restaurantName: 'test3',
+      restaurantId: 2,
       dishes: [
         {
           id: 3,
@@ -104,11 +85,11 @@ const SuggestionScreen = () => {
         {userSuggestions.map(userSuggestion => (
           <SuggestionCard
             name={userSuggestion.name}
-            hotelName={userSuggestion.hotelName}
+            restaurantName={userSuggestion.restaurantName}
             itemsList={userSuggestion.dishes}
-            selectedList={selectedDishes[userSuggestion.hotelId] ?? []}
+            selectedList={selectedDishes[userSuggestion.restaurantId] ?? []}
             onSelectItem={handleSelect}
-            hotelId={userSuggestion.hotelId}
+            restaurantId={userSuggestion.restaurantId}
             key={userSuggestion.name}
           />
         ))}
