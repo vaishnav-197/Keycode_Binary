@@ -8,6 +8,7 @@ import { navigationRef } from './utils'
 import SuggestionScreen from '@/Containers/SuggestionScreen'
 import Summary from '@/Components/Summary'
 import AddParticpants from '@/Containers/AddParticipants'
+import VenueFixPoll from '@/Containers/VenueFixResult'
 
 const Stack = createStackNavigator()
 
@@ -18,6 +19,13 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            name="VenueFixPoll"
+            component={VenueFixPoll}
+            options={{
+              animationEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="AddParticpants"
             component={AddParticpants}

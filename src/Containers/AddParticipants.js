@@ -9,7 +9,12 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native'
+
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import FloatingActionButton from '@/Components/FloatingActionButton'
+import AppBar from '@/Components/AppBar'
 
 const AddParticpants = ({ navigation }) => {
   const [participants, setParticipants] = useState([])
@@ -38,41 +43,59 @@ const AddParticpants = ({ navigation }) => {
 
   return (
     <View style={styles.appContainer}>
-      <View style={styles.pageHeading}>
-        <Text style={styles.pageHeadingText}>Add Participants to Poll</Text>
-      </View>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Mobile Number"
-          onChangeText={participantInputHandler}
-        />
-        <Button
-          style={styles.addParticipants}
-          title="Add Participants"
-          onPress={addparticipantHandler}
-        />
-      </View>
-
-      <View style={styles.goalsContainer}>
-        <View>
-          <Text style={styles.goalsHeading}>Participants</Text>
+      <AppBar title="Add Decision Makers" />
+      <ScrollView>
+        <View style={styles.pageHeading}>
+          <Text style={styles.pageHeadingText}>Add Participants to Poll</Text>
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Mobile Number"
+            onChangeText={participantInputHandler}
+          />
+          <Button
+            style={styles.addParticipants}
+            title="Add Participants"
+            onPress={addparticipantHandler}
+          />
         </View>
 
-        <FlatList
-          data={participants}
-          renderItem={itemData => {
-            return (
-              <TouchableOpacity
-                onPress={deleteParticipantHandler.bind(this, itemData.item.id)}
-              >
-                <View>
-                  <Text style={styles.goals}>{itemData.item.item} </Text>
-                </View>
-              </TouchableOpacity>
-            )
-          }}
-          keyExtractor={item => item.id}
+        <View style={styles.goalsContainer}>
+          <View>
+            <Text style={styles.goalsHeading}>Participants</Text>
+          </View>
+
+          <FlatList
+            data={participants}
+            renderItem={itemData => {
+              return (
+                <TouchableOpacity
+                  onPress={deleteParticipantHandler.bind(
+                    this,
+                    itemData.item.id,
+                  )}
+                >
+                  <View>
+                    <Text style={styles.goals}>{itemData.item.item} </Text>
+                  </View>
+                </TouchableOpacity>
+              )
+            }}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      </ScrollView>
+      <View>
+        <FloatingActionButton
+          icon={
+            <Icon
+              name="navigate-next"
+              color={'#fff'}
+              size={24}
+              style={styles.marginRight}
+            />
+          }
         />
       </View>
     </View>
