@@ -10,7 +10,7 @@ import {
 import AppBar from '@/Components/AppBar'
 import ListCard from '@/Components/ListCard'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import RatingIcon from '@/Components/RatingIcon'
+import Rating from '@/Components/Rating'
 import FloatingActionButton from '@/Components/FloatingActionButton'
 import SearchBar from '../Components/searchBar'
 
@@ -30,7 +30,7 @@ const RestaurantSelection = () => {
         'https://img.traveltriangle.com/blog/wp-content/uploads/2018/04/the-rice-boat.jpg',
       restaurantRating: 4,
       location: 'Kochi',
-      rating: 1,
+      rating: 1.5,
     },
     {
       restaurantName: 'rest 1',
@@ -39,7 +39,7 @@ const RestaurantSelection = () => {
         'https://im1.dineout.co.in/images/uploads/restaurant/sharpen/5/i/i/p59229-15639532785d38087e0ab48.jpg?tr=tr:n-xlarge',
       restaurantRating: 4,
       location: 'Kochi',
-      rating: 2,
+      rating: 2.7,
     },
     {
       restaurantName: 'rest 1',
@@ -48,7 +48,7 @@ const RestaurantSelection = () => {
         'https://img.traveltriangle.com/blog/wp-content/uploads/2018/04/sky-gril-400x281.jpg',
       restaurantRating: 4,
       location: 'Kochi',
-      rating: 3,
+      rating: 3.8,
     },
     {
       restaurantName: 'rest 1',
@@ -187,7 +187,7 @@ const RestaurantSelection = () => {
               key={restaurant.restaurantId}
               imageSource={restaurant.restaurantImage}
               style={[styles.marginBottom]}
-              sideComponent={<RatingIcon rating={restaurant.rating} />}
+              sideComponent={<Rating rating={restaurant.rating} />}
               onLongPressed={() => {
                 setSelectedRestaurants([
                   ...selectedRestaurants,
@@ -207,6 +207,9 @@ const RestaurantSelection = () => {
           ))}
         </View>
       </ScrollView>
+      <FloatingActionButton
+        icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
+      />
     </>
   )
 }
