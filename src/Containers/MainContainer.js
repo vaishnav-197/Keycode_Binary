@@ -1,26 +1,35 @@
 import React from 'react'
-import {
-  View,
-  StyleSheet,
-} from 'react-native'
+import { View, StyleSheet, ScrollView, Text } from 'react-native'
 import BottomNavigationBar from '@/Components/BottomNavigationBar'
-import SuggestionScreen from './SuggestionScreen'
+import ListCard from '@/Components/ListCard'
+import SearchBar from '@/Components/searchBar'
+import AppBar from '@/Components/AppBar'
 
-const MainContainer = () => {
-  const handleDiningSelect = () => {
+const MainContainer = ({ navigation }) => {
+  const handleDiningSelect = () => {}
 
-  }
-
-  const handleEventsSelect = () => {
-
-  }
+  const handleEventsSelect = () => {}
 
   return (
     <>
       <View style={styles.mainContainer}>
-        <SuggestionScreen />
+        <AppBar title={'Events'} />
+        <View style={styles.searchBarWrapper}>
+          <SearchBar />
+        </View>
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.cardWrapper}>
+            <ListCard title="Tech Event" />
+          </View>
+          <View style={styles.cardWrapper}>
+            <ListCard title="Tech Event" />
+          </View>
+          <View style={styles.cardWrapper}>
+            <ListCard title="Tech Event" />
+          </View>
+        </ScrollView>
       </View>
-      <BottomNavigationBar 
+      <BottomNavigationBar
         onSelectDining={handleDiningSelect}
         onSelectEvents={handleEventsSelect}
       />
@@ -30,8 +39,17 @@ const MainContainer = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1
-  }
+    flex: 1,
+  },
+  searchBarWrapper: {
+    marginTop: 15,
+    marginHorizontal: 12,
+    marginBottom: 10,
+  },
+  cardWrapper: {
+    marginHorizontal: 12,
+    marginVertical: 3,
+  },
 })
 
 export default MainContainer

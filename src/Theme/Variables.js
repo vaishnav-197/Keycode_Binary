@@ -10,6 +10,7 @@
  */
 export const Colors = {
   // Example colors:
+  black: '#000',
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
   white: '#ffffff',
@@ -18,7 +19,7 @@ export const Colors = {
   success: '#28a745',
   error: '#dc3545',
   diningPrimary: '#c04000',
-  eventsPrimary: '#4D80E4'
+  eventsPrimary: '#4D80E4',
 }
 
 export const NavigationColors = {
