@@ -36,13 +36,6 @@ const MainContainer = () => {
 
   return (
     <>
-      <View style={styles.topBanner}>
-        <Text>Location</Text>
-        <Text>name</Text>
-      </View>
-      <View style={styles.searchBarWrapper}>
-        <TextInput style={styles.searchBar} />
-      </View>
       <ListCard
         title="test"
         caption="test"
