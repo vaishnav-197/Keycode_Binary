@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import BottomNavigationBar from '@/Components/BottomNavigationBar'
+import SuggestionScreen from './SuggestionScreen'
 
 const MainContainer = () => {
   const handleDiningSelect = () => {}
@@ -9,8 +10,10 @@ const MainContainer = () => {
 
   return (
     <>
-      <View style={styles.mainContainer} />
-      <BottomNavigationBar
+      <View style={styles.mainContainer}>
+        <SuggestionScreen />
+      </View>
+      <BottomNavigationBar 
         onSelectDining={handleDiningSelect}
         onSelectEvents={handleEventsSelect}
       />

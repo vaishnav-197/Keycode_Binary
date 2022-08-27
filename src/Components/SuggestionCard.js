@@ -1,11 +1,17 @@
 import { useTheme } from '@/Hooks';
-import { Colors } from '@/Theme/Variables';
-import { CircleIcon } from 'native-base';
-import React from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import React, { useEffect } from 'react'
+import { Checkbox } from 'native-base';
+import { View, Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 
-const SuggestionCard = ({name, hotelName, itemsList}) => {
+const SuggestionCard = ({
+  name, 
+  hotelName, 
+  hotelId,
+  itemsList,
+  selectedList,
+  onSelectItem
+}) => {
   const { Layout, Fonts } = useTheme()
 
   return (
@@ -19,11 +25,16 @@ const SuggestionCard = ({name, hotelName, itemsList}) => {
       </View>
       <View style={styles.suggestionBody}>
         <Text style={[Fonts.caption, { marginBottom: 5 }]}>Items: </Text>
-        {itemsList.map((item, index) => (
-          <View key={index} style={[Layout.row, { alignItems: 'center', marginLeft: 16, marginBottom: 4 }]}>
-            <CircleIcon size={'1'} style={{ marginRight: 5 }} />
+        {itemsList.map((item) => (
+          <View key={item.id} style={[Layout.row, { alignItems: 'center', marginLeft: 16, marginBottom: 4 }]}>
+            <Checkbox
+              isChecked={selectedList.includes(item.id)}
+              style={styles.marginRight}
+              accessibilityLabel="Select dish"
+              onChange={() => onSelectItem(item.id, hotelId)}
+            />
             <Text> 
-              {item}
+              {item.name}
             </Text>
           </View>
         ))}
@@ -35,13 +46,15 @@ const SuggestionCard = ({name, hotelName, itemsList}) => {
 SuggestionCard.propTypes = {
   name: PropTypes.string,
   hotelName: PropTypes.string,
-  itemsList: PropTypes.array
+  itemsList: PropTypes.array,
+  selectedList: PropTypes.array
 }
 
 SuggestionCard.defaultProps = {
   name: '',
   hotelName: '',
-  itemsList: []
+  itemsList: [],
+  selectedList: []
 }
 
 const styles = StyleSheet.create({
@@ -67,6 +80,9 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 16
   },
+  marginRight: {
+    marginRight: 4
+  }
 });
 
 export default SuggestionCard
