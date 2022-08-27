@@ -14,7 +14,8 @@ import { Brand } from '@/Components'
 import { useTheme } from '@/Hooks'
 import { useLazyFetchOneQuery } from '@/Services/modules/users'
 import { changeTheme } from '@/Store/Theme'
-import ListCard from '@/Components/ListCard'
+import ListCard from '../Components/ListCard'
+import SearchBar from '../Components/searchBar'
 
 const MainContainer = () => {
   const { t } = useTranslation()
@@ -36,6 +37,7 @@ const MainContainer = () => {
 
   return (
     <>
+      <SearchBar />
       <ListCard
         title="test"
         caption="test"
@@ -59,19 +61,7 @@ const MainContainer = () => {
 }
 
 const styles = StyleSheet.create({
-  topBanner: {
-    padding: 12,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  searchBarWrapper: {
-    paddingHorizontal: 12,
-  },
-  searchBar: {
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingLeft: 40,
-  },
+
 })
 
 export default MainContainer

@@ -4,32 +4,24 @@ import { useTheme } from '@/Hooks'
 import { StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { Colors } from '@/Theme/Variables'
+import { Icon } from 'react-native-vector-icons/Feather'
 
-const SearchBar = ({
-  imageSource,
-  title,
-  caption,
-  sideText,
-  sideComponent,
-  isSelected,
-  onPressed,
-  onLongPressed,
-}) => {
+const SearchBar = () => {
   const { Fonts } = useTheme()
 
   return (
     <View style={styles.searchBarWrapper}>
-        <View>
-
-        </View>
+      <View>
+        <Icon name="search" />
+      </View>
       <TextInput style={styles.searchBar} />
     </View>
   )
 }
 
-SearchBar.propTypes = {}
+// SearchBar.propTypes = {}
 
-SearchBar.defaultProps = {}
+// SearchBar.defaultProps = {}
 
 const styles = StyleSheet.create({
   searchBarWrapper: {
