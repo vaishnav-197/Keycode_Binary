@@ -19,6 +19,9 @@ export default function () {
       alignItems: 'center',
       justifyContent: 'center',
     },
+    flexGrow: {
+      flexGrow: 1
+    },
     colVCenter: {
       flexDirection: 'column',
       alignItems: 'center',

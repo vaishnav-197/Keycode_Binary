@@ -10,6 +10,10 @@ import { StyleSheet } from 'react-native'
  */
 export default function ({ FontSize, Colors }) {
   return StyleSheet.create({
+    caption: {
+      fontSize: FontSize.small * 0.75,
+      color: Colors.darkGray
+    },
     textSmall: {
       fontSize: FontSize.small,
       color: Colors.text,
@@ -21,6 +25,11 @@ export default function ({ FontSize, Colors }) {
     textLarge: {
       fontSize: FontSize.large,
       color: Colors.text,
+    },
+    titleSmallBold: {
+      fontSize: FontSize.small,
+      color: Colors.text,
+      fontWeight: 'bold'
     },
     titleSmall: {
       fontSize: FontSize.small * 2,

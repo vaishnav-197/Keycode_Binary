@@ -2,6 +2,7 @@ const Colors = {
   primary: 'lightblue',
   text: 'white',
   inputBackground: 'gray',
+  caption: 'darkGray'
 }
 
 const NavigationColors = {
