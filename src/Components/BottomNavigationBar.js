@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { Colors } from '@/Theme/Variables'
-import { useTheme } from '@/Hooks'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const BottomNavigationBar = ({ onSelectDining, onSelectEvents }) => {
-  const { Layout, Fonts } = useTheme()
   const [selected, setSelected] = useState(0)
 
   const handleDiningSelect = () => {
@@ -23,38 +21,24 @@ const BottomNavigationBar = ({ onSelectDining, onSelectEvents }) => {
   }
 
   return (
-    <View style={[styles.bottomNavigationBarContainer, Layout.row]}>
-      <Pressable
-        style={[styles.navigationItem, Layout.row]}
-        onPress={handleDiningSelect}
-      >
-        <Icon 
-          name="lunch-dining" 
-          color={selected == 0 ? Colors.diningPrimary: '#000'} 
-          size={20} 
+    <View style={[styles.bottomNavigationBarContainer]}>
+      <Pressable style={[styles.navigationItem]} onPress={handleDiningSelect}>
+        <Icon
+          name="lunch-dining"
+          color={selected == 0 ? Colors.diningPrimary : '#000'}
+          size={20}
           style={styles.marginRight}
         />
-        <Text
-          style={[Fonts.titleSmallBold, selected == 0 && styles.diningSelected]}
-        >
-          Dining
-        </Text>
+        <Text style={[selected == 0 && styles.diningSelected]}>Dining</Text>
       </Pressable>
-      <Pressable
-        style={[styles.navigationItem, Layout.row]}
-        onPress={handleEventsSelect}
-      >
-        <Icon 
-          name="event-seat" 
-          color={selected == 1 ? Colors.eventsPrimary: '#000'} 
-          size={20} 
+      <Pressable style={[styles.navigationItem]} onPress={handleEventsSelect}>
+        <Icon
+          name="event-seat"
+          color={selected == 1 ? Colors.eventsPrimary : '#000'}
+          size={20}
           style={styles.marginRight}
         />
-        <Text
-          style={[Fonts.titleSmallBold, selected == 1 && styles.eventsSelected]}
-        >
-          Events
-        </Text>
+        <Text style={[, selected == 1 && styles.eventsSelected]}>Events</Text>
       </Pressable>
     </View>
   )

@@ -1,13 +1,10 @@
-import { useTheme } from '@/Hooks'
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 const AppBar = ({ title }) => {
-  const { Fonts } = useTheme()
-
   return (
     <View style={styles.appBarContainer}>
-      <Text style={Fonts.titleSmallBold}>{title}</Text>
+      <Text>{title}</Text>
     </View>
   )
 }
@@ -20,8 +17,8 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     paddingLeft: 16,
-    justifyContent: 'center'
-  }
+    justifyContent: 'center',
+  },
 })
 
 export default AppBar

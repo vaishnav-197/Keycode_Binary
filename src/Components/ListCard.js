@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { useTheme } from '@/Hooks'
 import { StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { CheckIcon } from 'native-base'
@@ -17,8 +16,6 @@ const ListCard = ({
   onPressed,
   onLongPressed,
 }) => {
-  const { Fonts } = useTheme()
-
   return (
     <TouchableOpacity onLongPress={onLongPressed} onPress={onPressed}>
       <View
@@ -29,7 +26,7 @@ const ListCard = ({
       >
         {isSelected && (
           <View style={styles.cardImageOverlay}>
-            <Text style={[Fonts.titleSmallBold, { color: '#fff' }]}>
+            <Text style={[{ color: '#fff' }]}>
               <CheckIcon size={'14'} color="#fff" />
             </Text>
           </View>
@@ -67,23 +64,19 @@ ListCard.defaultProps = {
 }
 
 const ListCardImage = ({ imageSource }) => {
-  const { Images } = useTheme()
-
   return (
     <View style={styles.cardImageContainer}>
-      <Image source={imageSource || Images.logo} style={styles.cardImage} />
+      <Image source={imageSource} style={styles.cardImage} />
     </View>
   )
 }
 
 const ListCardInfo = ({ title, caption, sideText, sideComponent }) => {
-  const { Layout, Fonts } = useTheme()
-
   return (
     <View style={styles.cardInfoStyle}>
-      <View style={Layout.flexGrow}>
-        <Text style={Fonts.titleSmallBold}>{title}</Text>
-        {caption != '' && <Text style={Fonts.caption}>{caption}</Text>}
+      <View>
+        <Text>{title}</Text>
+        {caption != '' && <Text>{caption}</Text>}
       </View>
       {sideText && (
         <View>

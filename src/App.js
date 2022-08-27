@@ -9,7 +9,7 @@ import { NativeBaseProvider } from 'native-base'
 const App = () => (
   <NativeBaseProvider>
     <Provider store={store}>
-      <ApplicationNavigator />
+    <ApplicationNavigator />
     </Provider>
   </NativeBaseProvider>
 )
