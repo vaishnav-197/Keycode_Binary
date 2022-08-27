@@ -4,8 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
 import { StartupContainer } from '@/Containers'
 import { useTheme } from '@/Hooks'
-import { MainContainer } from '@/Containers'
-import MainNavigator from './Main'
+import { MainContainer } from '../Containers/index'
+import { EventScreen } from '../Containers/index'
 import { navigationRef } from './utils'
 
 const Stack = createStackNavigator()
@@ -22,7 +22,14 @@ const ApplicationNavigator = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {/* <Stack.Screen name="Startup" component={StartupContainer} /> */}
           <Stack.Screen
-            name="Event"
+            name="EventScreen"
+            component={EventScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="MainContainer"
             component={MainContainer}
             options={{
               animationEnabled: false,
