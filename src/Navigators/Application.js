@@ -23,6 +23,20 @@ const ApplicationNavigator = () => {
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
+            name="AddParticpants"
+            component={AddParticpants}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="VenueScreen"
+            component={VenueScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
             name="MainContainer"
             component={MainContainer}
             options={{
@@ -37,26 +51,13 @@ const ApplicationNavigator = () => {
             }}
           />
           <Stack.Screen
-            name="VenueScreen"
-            component={VenueScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
             name="VenueFixPoll"
             component={VenueFixPoll}
             options={{
               animationEnabled: false,
             }}
           />
-          <Stack.Screen
-            name="AddParticpants"
-            component={AddParticpants}
-            options={{
-              animationEnabled: false,
-            }}
-          />
+
           <Stack.Screen
             name="SuggestionScreen"
             component={SuggestionScreen}

@@ -10,10 +10,10 @@ import BottomNavigationBar from '@/Components/BottomNavigationBar'
 import ListCard from '@/Components/ListCard'
 import SearchBar from '@/Components/searchBar'
 import AppBar from '@/Components/AppBar'
-import { GetApiHelper } from '@/Api/apiSlice'
-// import { useGetEventTypeQuery } from '@/Api/apiSlice'
+
 // Api
 import { useGetEventTypeMutation } from '@/Api/apiSlice'
+import { GetApiHelper } from '@/Api/apiSlice'
 
 const MainContainer = ({ navigation }) => {
   const [getEventType, data] = useGetEventTypeMutation()
