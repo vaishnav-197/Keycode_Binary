@@ -12,6 +12,8 @@ import { navigationRef } from './utils'
 import Summary from '@/Components/Summary'
 import AddParticpants from '@/Containers/AddParticipants'
 import VenueFixPoll from '@/Containers/VenueFixResult'
+import RestaurantSelection from '@/Containers/RestaurantSelection'
+import DishSelectionScreen from '@/Containers/DishSelectionScreen'
 
 const Stack = createStackNavigator()
 
@@ -23,8 +25,15 @@ const ApplicationNavigator = () => {
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
-            name="AddParticpants"
-            component={AddParticpants}
+            name="RestaurantSelection"
+            component={RestaurantSelection}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="DishSelectionScreen"
+            component={DishSelectionScreen}
             options={{
               animationEnabled: false,
             }}
@@ -32,13 +41,6 @@ const ApplicationNavigator = () => {
           <Stack.Screen
             name="VenueScreen"
             component={VenueScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="MainContainer"
-            component={MainContainer}
             options={{
               animationEnabled: false,
             }}
@@ -57,10 +59,23 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
-
+          <Stack.Screen
+            name="AddParticpants"
+            component={AddParticpants}
+            options={{
+              animationEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="SuggestionScreen"
             component={SuggestionScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="MainContainer"
+            component={MainContainer}
             options={{
               animationEnabled: false,
             }}

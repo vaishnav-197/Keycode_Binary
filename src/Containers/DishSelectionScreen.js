@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Button,
   Image,
@@ -13,89 +13,99 @@ import { View } from 'native-base'
 import { Layout } from '@/Theme/Layout'
 import { Fonts } from '@/Theme/Fonts'
 import { Colors } from '@/Theme/Variables'
+import { GetApiHelper, useGetEventTypeMutation } from '@/Api/apiSlice'
 
+const DishSelectionScreen = (props) => {
+  const restaurants = props?.route?.params?.id
+  const selectedItems = props?.route?.params?.items
 
-const DishSelectionScreen = () => {
-  const [restaurant, setRestaurant] = useState({
-    restaurantName: 'rest 1',
-    restaurantId: 1,
-    restaurantImage:
-      'https://img.traveltriangle.com/blog/wp-content/uploads/2018/04/the-rice-boat.jpg',
-    restaurantRating: 4,
-    location: 'Kochi',
-    rating: 1,
-    dishes: [
-      {
-        id: 3,
-        name: 'dish name 3',
-        rate: 10.0,
-      },
-      {
-        id: 4,
-        name: 'dish name 4',
-        rate: 20.0,
-      },
-    ],
-  })
+  const [getEventType, data] = useGetEventTypeMutation()
   const [selectedDishes, setSelectedDishes] = useState([])
+
+  const fetchApi = async () => {
+    const body = GetApiHelper('hotel', {
+      _id: restaurants?.[0],
+    })
+    try {
+      await getEventType(body)
+    } catch (error) {
+      console.log('Failed to Fetch: ', error)
+    }
+  }
+
+  useEffect(() => {
+    fetchApi()
+  }, [])
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
   return (
     <>
       <ScrollView>
-        <View>
-          <ImageBackground
-            source={{ uri: restaurant.restaurantImage }}
-            style={[Layout.fill, styles.header]}
-            resizeMode="cover"
-          >
-            <View style={styles.overlay}>
-              <Text style={[Fonts.titleSmall, styles.headerText]}>
-                {restaurant.restaurantName}
-              </Text>
-            </View>
-          </ImageBackground>
-          <View style={styles.mainContainer}>
-            <Text style={[Fonts.titleSmallBold]}>Dishes</Text>
-            {restaurant.dishes.map(dish => (
-              <View
-                key={dish.id}
-                style={[
-                  Layout.row,
-                  {
-                    justifyContent: 'space-between',
-                    borderBottomWidth: 1,
-                    paddingVertical: 18,
-                    borderBottomColor: '#bbb',
-                    alignItems: 'center'
-                  },
-                ]}
+        {data.isSuccess &&
+          data?.data.map(restaurant => (
+            <View key={restaurant._id}>
+              <ImageBackground
+                source={{ uri: restaurant.rest_image }}
+                style={[Layout.fill, styles.header]}
+                resizeMode="cover"
               >
-                <View>
-                  <Text style={Fonts.textRegularBold}>{dish.name}</Text>
-                  <Text>₹{dish.rate}</Text>
+                <View style={styles.overlay}>
+                  <Text style={[Fonts.titleSmall, styles.headerText]}>
+                    {restaurant.rest_name}
+                  </Text>
                 </View>
-                <View>
-                  <Button 
-                    title={selectedDishes.includes(dish.id)? "Remove": "Add" } 
-                    color={selectedDishes.includes(dish.id)? Colors.error: Colors.primary} 
-                    onPress={() => {
-                      if(selectedDishes.includes(dish.id)) {
-                        setSelectedDishes(selectedDishes => {
-                          return selectedDishes.filter(selectedDish => selectedDish != dish.id)
-                        })
-                      } else {
-                        setSelectedDishes([
-                          ...selectedDishes,
-                          dish.id
-                        ])
-                      }
-                    }}
-                  />
-                </View>
+              </ImageBackground>
+              <View style={styles.mainContainer}>
+                <Text style={[Fonts.titleSmallBold]}>Dishes</Text>
+                {restaurant.dishes.map(dish => (
+                  <View
+                    key={dish.id}
+                    style={[
+                      Layout.row,
+                      {
+                        justifyContent: 'space-between',
+                        borderBottomWidth: 1,
+                        paddingVertical: 18,
+                        borderBottomColor: '#bbb',
+                        alignItems: 'center',
+                      },
+                    ]}
+                  >
+                    <View>
+                      <Text style={Fonts.textRegularBold}>{dish.name}</Text>
+                      <Text>₹{dish.rate}</Text>
+                    </View>
+                    <View>
+                      <Button
+                        title={
+                          selectedDishes.includes(dish.id) ? 'Remove' : 'Add'
+                        }
+                        color={
+                          selectedDishes.includes(dish.id)
+                            ? Colors.error
+                            : Colors.primary
+                        }
+                        onPress={() => {
+                          if (selectedDishes.includes(dish.id)) {
+                            setSelectedDishes(selectedDishes => {
+                              return selectedDishes.filter(
+                                selectedDish => selectedDish != dish.id,
+                              )
+                            })
+                          } else {
+                            setSelectedDishes([...selectedDishes, dish.id])
+                          }
+                        }}
+                      />
+                    </View>
+                  </View>
+                ))}
               </View>
-            ))}
-          </View>
-        </View>
+            </View>
+          ))}
       </ScrollView>
       <FloatingActionButton
         icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
