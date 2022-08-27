@@ -26,7 +26,10 @@ const SuggestionCard = ({
       <View style={styles.suggestionBody}>
         <Text style={[Fonts.caption, { marginBottom: 5 }]}>Items: </Text>
         {itemsList.map((item) => (
-          <View key={item.id} style={[Layout.row, { alignItems: 'center', marginLeft: 16, marginBottom: 4 }]}>
+          <View 
+            key={item.id} 
+            style={[Layout.row, { alignItems: 'center', marginLeft: 16, marginBottom: 8 }]}
+          >
             <Checkbox
               isChecked={selectedList.includes(item.id)}
               style={styles.marginRight}
@@ -60,8 +63,6 @@ SuggestionCard.defaultProps = {
 const styles = StyleSheet.create({
   suggestionContainer: {
     margin: 14,
-    borderRadius: 20,
-    borderColor: 'red'
   },
   suggestionHeader: {
     backgroundColor: '#c04000',
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16
   },
   marginRight: {
-    marginRight: 4
+    marginRight: 8
   }
 });
 
