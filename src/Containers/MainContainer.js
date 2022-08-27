@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
   View,
-  ActivityIndicator,
   Text,
   TextInput,
   TouchableOpacity,
@@ -15,6 +14,8 @@ import { useTheme } from '@/Hooks'
 import { useLazyFetchOneQuery } from '@/Services/modules/users'
 import { changeTheme } from '@/Store/Theme'
 import ListCard from '@/Components/ListCard'
+import SuggestionCard from '@/Components/SuggestionCard'
+import BottomNavigationBar from '../Components/BottomNavigationBar'
 
 const MainContainer = () => {
   const { t } = useTranslation()
@@ -35,17 +36,12 @@ const MainContainer = () => {
   }
 
   return (
-    <>
-      <View style={styles.topBanner}>
-        <View>
-          <Text>Location</Text>
-        </View>
-      </View>
-      <ListCard
-        title="test"
-        caption="test"
-        imageSource={Images.logo}
-        sideText="side text"
+    <View>
+      <ListCard 
+        title="test" 
+        caption='test' 
+        imageSource={Images.logo} 
+        sideText='side text'
         sideComponent={<Text>Ok</Text>}
         isSelected={isSelected}
         onLongPressed={() => {
@@ -59,7 +55,10 @@ const MainContainer = () => {
           }
         }}
       />
-    </>
+
+      <SuggestionCard name='user1' hotelName='Test hotel' itemsList={['Biriyani', 'Porotta']} />
+      <BottomNavigationBar />
+    </View>
   )
 }
 

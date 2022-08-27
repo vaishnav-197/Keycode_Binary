@@ -11,7 +11,7 @@ import { StyleSheet } from 'react-native'
 export default function ({ FontSize, Colors }) {
   return StyleSheet.create({
     caption: {
-      fontSize: FontSize.small * 0.75,
+      fontSize: FontSize.small * 0.8,
       color: Colors.darkGray
     },
     textSmall: {
@@ -58,5 +58,11 @@ export default function ({ FontSize, Colors }) {
     textRight: {
       textAlign: 'right',
     },
+    primaryText: {
+      color: Colors.primary
+    },
+    whiteText: {
+      color: Colors.white
+    }
   })
 }
