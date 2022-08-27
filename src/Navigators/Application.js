@@ -1,8 +1,9 @@
 import React from 'react'
-import { SafeAreaView, StatusBar, Text } from 'react-native'
+import { SafeAreaView, StatusBar } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import { MainContainer } from '@/Containers'
+import { MainContainer } from '../Containers/index'
+import { VenueScreen } from '../Containers/index'
 import { navigationRef } from './utils'
 
 const Stack = createStackNavigator()
@@ -15,7 +16,14 @@ const ApplicationNavigator = () => {
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen
-            name="Event"
+            name="VenueScreen"
+            component={VenueScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="MainContainer"
             component={MainContainer}
             options={{
               animationEnabled: false,
