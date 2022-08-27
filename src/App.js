@@ -1,8 +1,7 @@
 import 'react-native-gesture-handler'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/lib/integration/react'
-import { store, persistor } from '@/Store'
+import { store } from './Store/store'
 import ApplicationNavigator from '@/Navigators/Application'
 import './Translations'
 import { NativeBaseProvider } from 'native-base'
@@ -10,9 +9,7 @@ import { NativeBaseProvider } from 'native-base'
 const App = () => (
   <NativeBaseProvider>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <ApplicationNavigator />
-      </PersistGate>
+    <ApplicationNavigator />
     </Provider>
   </NativeBaseProvider>
 )

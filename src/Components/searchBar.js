@@ -1,15 +1,10 @@
 import React from 'react'
-import { View, Text, TextInput } from 'react-native'
-import { useTheme } from '@/Hooks'
+import { View, TextInput } from 'react-native'
 import { StyleSheet } from 'react-native'
-import PropTypes from 'prop-types'
 import { Colors } from '@/Theme/Variables'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { Row } from 'native-base'
 
 const SearchBar = () => {
-  const { Fonts } = useTheme()
-
   return (
     <View style={styles.searchBarWrapper}>
       <View>
