@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const menu = createSlice({
   name: 'menu',
-  initialState: [],
+  initialState: {
+    menu: [],
+  },
   reducers: {
     add: (state, action) => {
-      state.menu.append(action.payload)
+      state.menu = [...state.menu, action.payload]
     },
     remove: (state, action) => {
       state.menu = state.menu.filter(item => {

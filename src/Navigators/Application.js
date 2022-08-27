@@ -59,6 +59,7 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
+
           <Stack.Screen
             name="SummaryScreen"
             component={SummaryScreen}
