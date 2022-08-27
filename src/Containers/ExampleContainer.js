@@ -21,6 +21,7 @@ const ExampleContainer = () => {
   const dispatch = useDispatch()
 
   const [userId, setUserId] = useState('9')
+  const [isSelected, setIsSelected] = useState(false);
   const [fetchOne, { data, isSuccess, isLoading, isFetching, error }] =
     useLazyFetchOneQuery()
 
@@ -40,6 +41,17 @@ const ExampleContainer = () => {
         imageSource={Images.logo} 
         sideText='side text'
         sideComponent={<Text>Ok</Text>}
+        isSelected={isSelected}
+        onLongPressed={() => {
+          setIsSelected(true);
+        }}
+        onPressed={() => {
+          if(isSelected) {
+            setIsSelected(false);
+          } else {
+            // go to pressed item
+          }
+        }}
       />
     </>
   )
