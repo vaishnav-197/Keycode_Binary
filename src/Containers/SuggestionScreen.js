@@ -129,7 +129,6 @@ const SuggestionScreen = () => {
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
-    zIndex: 5,
   },
 })
 

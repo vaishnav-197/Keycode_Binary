@@ -16,41 +16,98 @@ import AppBar from '../Components/AppBar'
 import SearchBar from '../Components/searchBar'
 
 const VenueScreen = () => {
-  const [isFilter, setIsFilter] = useState(false)
-  const [name, setName] = useState('')
-  const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
-  const [duration, setDuration] = useState('')
-  const [locality, setLocality] = useState('')
-  const [budget, setBudget] = useState('')
-  const [participants, setParticipants] = useState(2)
 
-  const submitFilter = () => {
+  const [isFilter, setIsFilter] = useState(false);
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('01-09-2022');
+  const [time, setTime] = useState('09:30 am');
+  const [duration, setDuration] = useState('5');
+  const [locality, setLocality] = useState('Kochi');
+  const [budget, setBudget] = useState('2 lak');
+  const [participants, setParticipants] = useState('2');
+
+  const submitFilter = () =>{
     // call api
     setIsFilter(!isFilter)
   }
 
+  const venueSuggestion = [
+    {
+      name: "Marriot",
+      rating: 4.5,
+    },
+    {
+      name: "Grand Hyatt",
+      rating: 4.4,
+    },
+    {
+      name: "Crown Plaza",
+      rating: 4.3,
+    },
+    {
+      name: "Four Points",
+      rating: 4.2,
+    },
+    {
+      name: "Holiday Inn",
+      rating: 4.1,
+    },
+  ]
+
   return (
-    <ScrollView
-      style={styles.scrollView}
-      contentContainerStyle={styles.contentContainerStyle}
-    >
-      <AppBar title={'Venue'} />
-      <View style={styles.header}>
-        <View style={styles.searchWrapper}>
-          <SearchBar />
-        </View>
-        <View style={styles.iconWrapepr}>
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={() => {
-              setIsFilter(!isFilter)
-            }}
-          >
-            <Icon name="filter-list" color={'black'} size={20} />
-          </TouchableOpacity>
-        </View>
+    <>
+    <AppBar title={'Venue'}/>
+    <View style={styles.header}>
+      <View style={styles.searchWrapper}>
+        <SearchBar />
       </View>
+      <View style={styles.iconWrapepr}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={()=>{
+          const currentFilter= isFilter;
+          setIsFilter(!currentFilter);
+        }}>
+        <Icon 
+          name="filter-list" 
+          color={'black'} 
+          size={20} 
+        />
+      </TouchableOpacity>
+      </View>
+    </View>
+    <TouchableOpacity style={styles.filterComponent} onPress={()=>{
+          const currentFilter= isFilter;
+          setIsFilter(!currentFilter);
+        }}>
+      <View style={styles.iconRow}>
+      <Icon
+          name="location-on"
+          color={'#2E279D'}
+          size={20}
+          style={styles.marginRight}
+        />
+        <Text style={styles.filterText}>{locality}</Text>
+      </View>
+      <View style={styles.iconRow}>
+      <Icon
+          name="supervised-user-circle"
+          color={'#2E279D'}
+          size={20}
+          style={styles.marginRight}
+        />
+        <Text style={styles.filterText}>{participants}</Text>
+      </View>
+      <View style={styles.iconRow}>
+      <Icon
+          name="date-range"
+          color={'#2E279D'}
+          size={20}
+          style={styles.marginRight}
+        />
+        <Text style={styles.filterText}>{date}</Text>
+      </View>
+    </TouchableOpacity>
+    <ScrollView style={styles.scrollView}
+      contentContainerStyle={styles.contentContainerStyle}>
       <View style={styles.body}>
         {isFilter && (
           <View style={styles.body}>
@@ -106,7 +163,7 @@ const VenueScreen = () => {
                 style={styles.input}
                 onChangeText={setParticipants}
                 value={participants}
-                placeholder="Count"
+                placeholder="Participants"
               />
             </View>
             <View style={styles.buttonWrapper}>
@@ -116,23 +173,48 @@ const VenueScreen = () => {
             </View>
           </View>
         )}
+        {venueSuggestion.map(venue => {
+          return (<ListCard
+            name={venue.name}
+            sideComponent={venue.rating}
+            caption={'abcd'}
+          />)
+        })}
       </View>
     </ScrollView>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   topBanner: {},
+  filterText: {
+    color: '#2E279D',
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 10,
   },
+  filterComponent:{
+    width: '100%',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 30,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0,0,0,0.5)'
+  },
   iconWrapepr: {
     width: 50,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  iconRow:{
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   searchWrapper: {
     flex: 1,
