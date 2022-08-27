@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 
 const getColor = (rating) => {
   switch(rating) {
@@ -18,7 +18,18 @@ const getColor = (rating) => {
 
 const RatingIcon = ({ rating }) => {
   return (
-    <Text>{ rating }</Text>
+    <View style={{
+      backgroundColor: getColor(rating),
+      paddingHorizontal: 8,
+      paddingVertical: 4,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 10
+    }}>
+      <Text style={{
+        color: '#fff'
+      }}>{ rating }.0</Text>
+    </View>
   )
 }
 

@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
   Text,
-  TextInput
+  TextInput,
 } from 'react-native'
 import AppBar from '@/Components/AppBar'
 import ListCard from '@/Components/ListCard'
@@ -70,139 +70,143 @@ const RestaurantSelection = () => {
     },
   ])
 
-  const submitFilter = () =>{
+  const submitFilter = () => {
     // call api
     setIsFilter(!isFilter)
   }
 
   return (
     <>
-    <AppBar title={'Venue'}/>
-    <View style={styles.header}>
-      <View style={styles.searchWrapper}>
-        <SearchBar />
+      <AppBar title={'Select Restaurant'} />
+      <View style={styles.header}>
+        <View style={styles.searchWrapper}>
+          <SearchBar />
+        </View>
+        <View style={styles.iconWrapepr}>
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => {
+              const currentFilter = isFilter
+              setIsFilter(!currentFilter)
+            }}
+          >
+            <Icon name="filter-list" color={'black'} size={20} />
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.iconWrapepr}>
-        <TouchableOpacity style={styles.buttonStyle} onPress={()=>{
-          const currentFilter= isFilter;
-          setIsFilter(!currentFilter);
-        }}>
-        <Icon 
-          name="filter-list" 
-          color={'black'} 
-          size={20} 
-        />
+      <TouchableOpacity
+        style={styles.filterComponent}
+        onPress={() => {
+          const currentFilter = isFilter
+          setIsFilter(!currentFilter)
+        }}
+      >
+        <View style={styles.iconRow}>
+          <Icon
+            name="location-on"
+            color={'#2E279D'}
+            size={20}
+            style={styles.marginRight}
+          />
+          <Text style={styles.filterText}>{locality}</Text>
+        </View>
+        <View style={styles.iconRow}>
+          <Icon
+            name="date-range"
+            color={'#2E279D'}
+            size={20}
+            style={styles.marginRight}
+          />
+          <Text style={styles.filterText}>{date}</Text>
+        </View>
       </TouchableOpacity>
-      </View>
-    </View>
-    <TouchableOpacity style={styles.filterComponent} onPress={()=>{
-          const currentFilter= isFilter;
-          setIsFilter(!currentFilter);
-        }}>
-      <View style={styles.iconRow}>
-      <Icon
-          name="location-on"
-          color={'#2E279D'}
-          size={20}
-          style={styles.marginRight}
-        />
-        <Text style={styles.filterText}>{locality}</Text>
-      </View>
-      <View style={styles.iconRow}>
-      <Icon
-          name="date-range"
-          color={'#2E279D'}
-          size={20}
-          style={styles.marginRight}
-        />
-        <Text style={styles.filterText}>{date}</Text>
-      </View>
-    </TouchableOpacity>
-    <ScrollView style={styles.scrollView}
-      contentContainerStyle={styles.contentContainerStyle}>
-      <View style={styles.body}>
-        {isFilter && (
-          <View style={styles.body}>
-            <View style={styles.row}>
-              <Text style={styles.key}>Date</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={setDate}
-                value={date}
-                placeholder="DD-MM-YYYY"
-              />
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.contentContainerStyle}
+      >
+        <View style={styles.body}>
+          {isFilter && (
+            <View style={styles.body}>
+              <View style={styles.row}>
+                <Text style={styles.key}>Date</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={setDate}
+                  value={date}
+                  placeholder="DD-MM-YYYY"
+                />
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.key}>Time</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={setTime}
+                  value={time}
+                  placeholder="HH:MM Am/Pm"
+                />
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.key}>Duration</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={setDuration}
+                  value={duration}
+                  placeholder="Duration in hour"
+                  keyboardType="numeric"
+                />
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.key}>Location</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={setLocality}
+                  value={locality}
+                  placeholder="Location"
+                />
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.key}>Budget</Text>
+                <TextInput
+                  style={styles.input}
+                  onChangeText={setBudget}
+                  value={budget}
+                  placeholder="Budget"
+                />
+              </View>
+              <View style={styles.buttonWrapper}>
+                <TouchableOpacity style={styles.button} onPress={submitFilter}>
+                  <Text style={styles.submitButton}>Apply</Text>
+                </TouchableOpacity>
+              </View>
             </View>
-            <View style={styles.row}>
-              <Text style={styles.key}>Time</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={setTime}
-                value={time}
-                placeholder="HH:MM Am/Pm"
-              />
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.key}>Duration</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={setDuration}
-                value={duration}
-                placeholder="Duration in hour"
-                keyboardType="numeric"
-              />
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.key}>Location</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={setLocality}
-                value={locality}
-                placeholder="Location"
-              />
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.key}>Budget</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={setBudget}
-                value={budget}
-                placeholder="Budget"
-              />
-            </View>
-            <View style={styles.buttonWrapper}>
-              <TouchableOpacity style={styles.button} onPress={submitFilter}>
-                <Text style={styles.submitButton}>Apply</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-        {restaurants.map(restaurant => (
-    <ListCard
-      title={restaurant.restaurantName}
-      caption={restaurant.location}
-      key={restaurant.restaurantId}
-      imageSource={restaurant.restaurantImage}
-      style={[styles.marginBottom]}
-      sideComponent={<RatingIcon rating={restaurant.rating} />}
-      onLongPressed={() => {
-        setSelectedRestaurants([
-          ...selectedRestaurants,
-          restaurant.restaurantId,
-        ])
-      }}
-      onPressed={() => {
-        setSelectedRestaurants(selectedRestaurants => {
-          return selectedRestaurants.filter(
-            selectedRestaurant =>
-              selectedRestaurant != restaurant.restaurantId,
-          )
-        })
-      }}
-      isSelected={selectedRestaurants.includes(restaurant.restaurantId)}
-    />
-  ))}
-      </View>
-    </ScrollView>
+          )}
+          {restaurants.map(restaurant => (
+            <ListCard
+              title={restaurant.restaurantName}
+              caption={restaurant.location}
+              key={restaurant.restaurantId}
+              imageSource={restaurant.restaurantImage}
+              style={[styles.marginBottom]}
+              sideComponent={<RatingIcon rating={restaurant.rating} />}
+              onLongPressed={() => {
+                setSelectedRestaurants([
+                  ...selectedRestaurants,
+                  restaurant.restaurantId,
+                ])
+              }}
+              onPressed={() => {
+                setSelectedRestaurants(selectedRestaurants => {
+                  return selectedRestaurants.filter(
+                    selectedRestaurant =>
+                      selectedRestaurant != restaurant.restaurantId,
+                  )
+                })
+              }}
+              isSelected={selectedRestaurants.includes(restaurant.restaurantId)}
+            />
+          ))}
+        </View>
+      </ScrollView>
     </>
   )
 }
@@ -218,7 +222,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 10,
   },
-  filterComponent:{
+  filterComponent: {
     width: '100%',
     height: 50,
     alignItems: 'center',
@@ -226,16 +230,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(0,0,0,0.5)'
+    borderBottomColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: '#fff'
   },
   iconWrapepr: {
     width: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  iconRow:{
+  iconRow: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   searchWrapper: {
     flex: 1,
@@ -278,8 +283,8 @@ const styles = StyleSheet.create({
     color: '#4D80E4',
   },
   marginBottom: {
-    marginBottom: 12
-  }
+    marginBottom: 12,
+  },
 })
 
 export default RestaurantSelection
