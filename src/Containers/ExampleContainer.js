@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   View,
-  ActivityIndicator,
   Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
 } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +10,7 @@ import { useTheme } from '@/Hooks'
 import { useLazyFetchOneQuery } from '@/Services/modules/users'
 import { changeTheme } from '@/Store/Theme'
 import ListCard from '@/Components/ListCard'
+import SuggestionCard from '@/Components/SuggestionCard'
 
 const ExampleContainer = () => {
   const { t } = useTranslation()
@@ -34,7 +31,7 @@ const ExampleContainer = () => {
   }
 
   return (
-    <>
+    <View>
       <ListCard 
         title="test" 
         caption='test' 
@@ -53,7 +50,9 @@ const ExampleContainer = () => {
           }
         }}
       />
-    </>
+
+      <SuggestionCard name='user1' hotelName='Test hotel' itemsList={['Biriyani', 'Porotta']} />
+    </View>
   )
 }
 
