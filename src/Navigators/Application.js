@@ -65,14 +65,6 @@ const ApplicationNavigator = () => {
             }}
           />
           <Stack.Screen
-            name="VenueScreen"
-            component={VenueScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-
-          <Stack.Screen
             name="FoodPollScreen"
             component={SuggestionScreen}
             options={{
