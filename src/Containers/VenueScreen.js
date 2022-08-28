@@ -22,7 +22,7 @@ import { GetApiHelper } from '@/Api/apiSlice'
 import { add, remove } from '../Store/VenueSlice'
 import FloatingActionButton from '@/Components/FloatingActionButton'
 
-const VenueScreen = () => {
+const VenueScreen = ({ navigation }) => {
   const [getEventType, data] = useGetEventTypeMutation()
   const [isFilter, setIsFilter] = useState(false)
   const [name, setName] = useState('')
@@ -221,6 +221,12 @@ const VenueScreen = () => {
             })}
         </View>
       </ScrollView>
+      {venuesSelected.length != 0 && <FloatingActionButton
+         icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
+         onPress={() => {
+           navigation.navigate('AddParticpants')
+         }}
+      />}
     </>
   )
 }

@@ -1,3 +1,4 @@
+import Storage from '@/Storage'
 import React, { useState, useEffect } from 'react'
 import {
   View,
@@ -18,7 +19,8 @@ const LoginScreen = ({ navigation }) => {
   const [otp, setOtp] = useState('')
   const [isMobCompleted, setMobCompleted] = useState(false)
 
-  const onPressLogin = () => {
+  const onPressLogin = async () => {
+    await Storage._storeUserTokenAsync(mobileNumber)
     navigation.navigate('MainContainer')
   }
 

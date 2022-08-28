@@ -1,6 +1,6 @@
 // In App.js in a new project
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Button,
   StyleSheet,
@@ -15,10 +15,25 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import FloatingActionButton from '@/Components/FloatingActionButton'
 import AppBar from '@/Components/AppBar'
+import { AddVenueHelper, useAddVenuePollMutation } from '@/Api/apiSlice'
+import Storage from '@/Storage'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 const AddParticpants = ({ navigation }) => {
+  const [addVenuePoll, data] = useAddVenuePollMutation()
+  const venuesSelected = useSelector(state => state. venue.value)
   const [participants, setParticipants] = useState([])
   const [currentParticipant, setcurrentParticipant] = useState('')
+
+  const fetchApi = async (updateBody) => {
+    const body = AddVenueHelper('venue_poll', updateBody)
+    try {
+      await addVenuePoll(body)
+    } catch (error) {
+      console.log('Failed to Fetch: ', error)
+    }
+  }
 
   const participantInputHandler = text => {
     setcurrentParticipant(text)
@@ -39,6 +54,17 @@ const AddParticpants = ({ navigation }) => {
     setParticipants(particpants => {
       return participants.filter(goal => goal.id !== id)
     })
+  }
+
+  const getMobile = async () =>{
+    const mobile = await Storage._retrieveUserToken()
+    console.log(mobile)
+    fetchApi({
+      "createdBy": mobile,
+      "participants": participants.map(p => p.item),
+      "venues": venuesSelected
+    })
+    navigation.navigate('RestaurantSelection')
   }
 
   return (
@@ -87,6 +113,7 @@ const AddParticpants = ({ navigation }) => {
       </ScrollView>
       <View>
         <FloatingActionButton
+          onPress={getMobile}
           icon={
             <Icon
               name="navigate-next"

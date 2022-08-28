@@ -17,6 +17,8 @@ import VenueFixPoll from '@/Containers/VenueFixResult'
 import RestaurantSelection from '@/Containers/RestaurantSelection'
 import DishSelectionScreen from '@/Containers/DishSelectionScreen'
 import UpcomingEventScreen from '@/Containers/UpcomingEventScreen'
+import VenueFixResult from '@/Containers/VenueFixResult'
+import PaymentScreen from '@/Containers/PaymentScreen'
 
 const Stack = createStackNavigator()
 
@@ -27,6 +29,13 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+              name="LoginScreen"
+              component={LoginScreen}
+              options={{
+                animationEnabled: false,
+              }}
+            />
         <Stack.Screen
             name="MainContainer"
             component={MainContainer}
@@ -34,9 +43,16 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
-        <Stack.Screen
-            name="LoginScreen"
-            component={LoginScreen}
+          <Stack.Screen
+            name="RestaurantSelection"
+            component={RestaurantSelection}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="DishSelectionScreen"
+            component={DishSelectionScreen}
             options={{
               animationEnabled: false,
             }}
@@ -76,10 +92,23 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
-
+          <Stack.Screen
+            name="PaymentScreen"
+            component={PaymentScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="VenueFixPoll"
             component={VenueFixPoll}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="VenueFixResult"
+            component={VenueFixResult}
             options={{
               animationEnabled: false,
             }}

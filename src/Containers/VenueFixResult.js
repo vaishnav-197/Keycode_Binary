@@ -16,30 +16,29 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import FloatingActionButton from '@/Components/FloatingActionButton'
 import ListCard from '@/Components/ListCard'
 import AppBar from '@/Components/AppBar'
+import { Fonts } from '@/Theme/Fonts'
 
 const VenueFixPoll = ({ navigation }) => {
+  const onPress = () => {
+    navigation.navigate('SummaryScreen')
+  }
   return (
-    <View style={styles.appContainer}>
+    <>
       <AppBar title="Poll Results" />
+    <View style={styles.appContainer}>
       <ScrollView>
         <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
+          <Text style={[Fonts.textRegularBold, { marginTop: 16 }]}>Selected Venue</Text>
+          <ListCard 
+            imageSource={'https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2018/07/02/1033/Grand-Hyatt-Kochi-Bolgatty-P058-Hotel-Facade.jpg/Grand-Hyatt-Kochi-Bolgatty-P058-Hotel-Facade.16x9.jpg'}
+            title={'Hyatt'}
+            caption={'Kochi'}
+          />
         </View>
       </ScrollView>
       <View>
         <FloatingActionButton
+          onPress={onPress}
           icon={
             <Icon
               name="navigate-next"
@@ -51,6 +50,7 @@ const VenueFixPoll = ({ navigation }) => {
         />
       </View>
     </View>
+    </>
   )
 }
 

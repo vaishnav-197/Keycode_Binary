@@ -118,7 +118,7 @@ const DishSelectionScreen = props => {
             console.log(currentHotelIndex)
             setCurrentHotelIndex(currentHotelIndex+1)
           } else {
-            // navigate to next screen
+            props.navigation.navigate('VenueFixResult')
           }
         }}
       />

@@ -8,17 +8,20 @@ import SearchBar from '@/Components/searchBar'
 import AppBar from '@/Components/AppBar'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 // Api
-import { useGetEventTypeMutation } from '@/Api/apiSlice'
+import { useGetEventTypeMutation, useGetNotificationMutation } from '@/Api/apiSlice'
 import { GetApiHelper } from '@/Api/apiSlice'
 import FloatingActionButton from '@/Components/FloatingActionButton'
+import Storage from '@/Storage'
 
 const MainContainer = ({ navigation }) => {
   const eventSelected = useSelector(state => state.event.value)
   const dispatch = useDispatch()
   const [getEventType, data] = useGetEventTypeMutation()
+  const [ checkNotif, dta ] = useGetNotificationMutation()
 
   const handleDiningSelect = () => {}
   const handleEventsSelect = () => {}
+
   const fetchApi = async () => {
     const body = GetApiHelper('eventType', {})
     try {
@@ -28,14 +31,42 @@ const MainContainer = ({ navigation }) => {
     }
   }
 
+  const checkNotification = async () => {
+    const body = GetApiHelper('venue_poll', {
+      "participants": await Storage._retrieveUserToken()
+    })
+    try {
+      await checkNotif(body)
+    } catch (error) {
+      console.error('Failed to Fetch: ', error)
+    }
+  }
+
   useEffect(() => {
     fetchApi()
+    setInterval(async () => {
+      console.log('hello')
+      checkNotification()
+    }, 2000)
   }, [])
+
+  useEffect(() => {
+    if(dta?.data.length > 0) {
+      navigation.navigate('UpcomingEventScreen', {
+        data: dta?.data
+      })
+    }
+  }, [dta])
+
 
   return (
     <>
       <View style={styles.mainContainer}>
-        <AppBar title={'Events'} color={'blue'} />
+        <AppBar 
+          title={'Events'} 
+          color={'blue'} 
+          showRefresh={true} 
+        />
         <View style={styles.searchBarWrapper}>
           <SearchBar />
         </View>

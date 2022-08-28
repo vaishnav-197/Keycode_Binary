@@ -11,11 +11,15 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
     { id: 3, title: 'Add-on', cost: 2000}
   ];
 
-const SummaryScreen = ({ selectedItems = [] }) => {
+const SummaryScreen = ({ navigation, selectedItems = [] }) => {
 
   // change data here
   const [summary, setSummary] = useState([]);
   const [total, setTotal] = useState(0);
+
+  const onPress = () => {
+    navigation.navigate('PaymentScreen')
+  }
 
     useEffect(()=>{
       setSummary(dummySummary);
@@ -42,14 +46,14 @@ const SummaryScreen = ({ selectedItems = [] }) => {
           <View key={item.title} style={styles.item}>
             <Text style={styles.titleText}> {item.title} </Text>
             <Text style={styles.titleText}> ₹{item.cost} </Text>
-            <TouchableOpacity onPress={()=>onPressEdit(item.id)}>
+            {/* <TouchableOpacity onPress={()=>onPressEdit(item.id)}>
             <Icon
               name="edit"
               color={'black'}
               size={20}
               style={styles.marginRight}
             />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         ))}
         <View style={[styles.item, styles.total]}>
@@ -58,7 +62,7 @@ const SummaryScreen = ({ selectedItems = [] }) => {
         </View>
       </View>
       <View style={styles.buttonWrapper}>
-      <Button onPress={()=>{alert('HII')}} style={styles.submit}>Submit</Button>
+      <Button onPress={onPress} style={styles.submit}>Payment</Button>
       </View>
     </View>
   )
