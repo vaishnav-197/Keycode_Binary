@@ -46,7 +46,7 @@ const AddParticpants = ({ navigation }) => {
       <AppBar title="Add Decision Makers" color={'blue'}/>
       <ScrollView>
         <View style={styles.pageHeading}>
-          <Text style={styles.pageHeadingText}>Add Participants to Poll</Text>
+          <Text style={styles.pageHeadingText}>Add Collaborators</Text>
         </View>
         <View style={styles.inputContainer}>
           <TextInput

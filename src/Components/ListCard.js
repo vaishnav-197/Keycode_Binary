@@ -19,10 +19,11 @@ const ListCard = ({
   onLongPressed,
 }) => {
   return (
-    <TouchableOpacity onLongPress={onLongPressed} onPress={onPressed}>
+    <TouchableOpacity onLongPress={onLongPressed} onPress={onPressed} style={styles.container}>
       <View
         style={[
           styles.listCardContainer,
+          styles.border,
           isSelected && styles.selectedCardContainer,
         ]}
       >
@@ -91,9 +92,16 @@ const ListCardInfo = ({ title, caption, sideText, sideComponent }) => {
 }
 
 const styles = StyleSheet.create({
+  border:{
+    borderWidth: 0.5,
+    borderColor: '#2E279D'
+  },
+  container:{
+    marginTop: 30,
+  },
   listCardContainer: {
     overflow: 'hidden',
-    borderRadius: 30,
+    borderRadius: 10,
     borderWidth: 4,
     borderColor: 'rgba(0, 0, 0, 0)',
   },

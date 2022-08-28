@@ -75,11 +75,16 @@ const SuggestionScreen = () => {
     },
   ]
 
+  const onTapRefresh = () =>{
+  }
+
+
   return (
     <>
       <AppBar
         title={'Dish Suggestions'}
-        actions={[<Icon name="refresh" key={'test'} color="#000" size={22} />]}
+        onPress={onTapRefresh}
+        showRefresh={true}
       />
       <ScrollView style={styles.scrollViewContainer}>
         {userSuggestions.map(userSuggestion => (
@@ -88,7 +93,7 @@ const SuggestionScreen = () => {
             restaurantName={userSuggestion.restaurantName}
             itemsList={userSuggestion.dishes}
             selectedList={selectedDishes[userSuggestion.restaurantId] ?? []}
-            onSelectItem={handleSelect}
+            onSelectItem={()=>{}}
             restaurantId={userSuggestion.restaurantId}
             key={userSuggestion.name}
           />

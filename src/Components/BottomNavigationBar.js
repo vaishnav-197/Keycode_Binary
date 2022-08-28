@@ -6,7 +6,7 @@ import { Layout } from '@/Theme/Layout'
 import { Fonts } from '@/Theme/Fonts'
 
 const BottomNavigationBar = ({ onSelectDining, onSelectEvents }) => {
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState(1)
 
   const handleDiningSelect = () => {
     setSelected(0)
