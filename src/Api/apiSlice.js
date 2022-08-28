@@ -20,7 +20,7 @@ export const AddVenueHelper = (context, updateBody) => {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://dirty-pears-swim-103-142-31-94.loca.lt/',
+    baseUrl: 'https://strong-lights-shout-103-142-31-94.loca.lt/',
   }),
   endpoints: builder => ({
     getEventType: builder.mutation({
