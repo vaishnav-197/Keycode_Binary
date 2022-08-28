@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
 } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import FloatingActionButton from '@/Components/FloatingActionButton'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { View } from 'native-base'
@@ -14,17 +15,18 @@ import { Layout } from '@/Theme/Layout'
 import { Fonts } from '@/Theme/Fonts'
 import { Colors } from '@/Theme/Variables'
 import { GetApiHelper, useGetEventTypeMutation } from '@/Api/apiSlice'
+import { add, remove } from '../Store/MenuSlice'
 
-const DishSelectionScreen = (props) => {
-  const restaurants = props?.route?.params?.id
-  const selectedItems = props?.route?.params?.items
-
+const DishSelectionScreen = props => {
+  const hotelsSelected = useSelector(state => state.hotel.value)
+  const dishesSelected = useSelector(state => state.menu.menu)
+  const dispatch = useDispatch()
   const [getEventType, data] = useGetEventTypeMutation()
-  const [selectedDishes, setSelectedDishes] = useState([])
+  const [currentHotelIndex, setCurrentHotelIndex] = useState(0);
 
   const fetchApi = async () => {
     const body = GetApiHelper('hotel', {
-      _id: restaurants?.[0],
+      _id: hotelsSelected?.[currentHotelIndex].id,
     })
     try {
       await getEventType(body)
@@ -35,11 +37,7 @@ const DishSelectionScreen = (props) => {
 
   useEffect(() => {
     fetchApi()
-  }, [])
-
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  }, [currentHotelIndex])
 
   return (
     <>
@@ -81,22 +79,28 @@ const DishSelectionScreen = (props) => {
                     <View>
                       <Button
                         title={
-                          selectedDishes.includes(dish.id) ? 'Remove' : 'Add'
+                          dishesSelected.find(
+                            dishSelected => dish.id == dishSelected.id,
+                          )
+                            ? 'Remove'
+                            : 'Add'
                         }
                         color={
-                          selectedDishes.includes(dish.id)
+                          dishesSelected.find(
+                            dishSelected => dish.id == dishSelected.id,
+                          )
                             ? Colors.error
                             : Colors.primary
                         }
                         onPress={() => {
-                          if (selectedDishes.includes(dish.id)) {
-                            setSelectedDishes(selectedDishes => {
-                              return selectedDishes.filter(
-                                selectedDish => selectedDish != dish.id,
-                              )
-                            })
+                          const isSelected = dishesSelected.find(
+                            dishSelected => dish.id == dishSelected.id,
+                          )
+
+                          if (isSelected) {
+                            dispatch(remove(dish))
                           } else {
-                            setSelectedDishes([...selectedDishes, dish.id])
+                            dispatch(add(dish))
                           }
                         }}
                       />
@@ -109,6 +113,14 @@ const DishSelectionScreen = (props) => {
       </ScrollView>
       <FloatingActionButton
         icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
+        onPress={() => {
+          if (currentHotelIndex < hotelsSelected.length-1) {
+            console.log(currentHotelIndex)
+            setCurrentHotelIndex(currentHotelIndex+1)
+          } else {
+            // navigate to next screen
+          }
+        }}
       />
     </>
   )

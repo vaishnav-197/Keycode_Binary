@@ -11,7 +11,7 @@ export const menu = createSlice({
     },
     remove: (state, action) => {
       state.menu = state.menu.filter(item => {
-        return item !== action.payload
+        return item.id !== action.payload.id
       })
     },
   },

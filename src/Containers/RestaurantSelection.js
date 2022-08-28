@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import {
   ScrollView,
   StyleSheet,
@@ -14,8 +14,17 @@ import Rating from '@/Components/Rating'
 import FloatingActionButton from '@/Components/FloatingActionButton'
 import SearchBar from '../Components/searchBar'
 import { GetApiHelper, useGetEventTypeMutation } from '@/Api/apiSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { add, remove } from '../Store/HotelSlice'
 
 const RestaurantSelection = ({ navigation }) => {
+  const hotelsSelected = useSelector(state => state.hotel.value)
+
+  useEffect(()=> {
+    console.log(hotelsSelected)
+  }, [hotelsSelected])
+
+  const dispatch = useDispatch()
   const [getEventType, data] = useGetEventTypeMutation()
   const [selectedRestaurants, setSelectedRestaurants] = useState([])
   const [locality, setLocality] = useState('Kochi')
@@ -29,7 +38,7 @@ const RestaurantSelection = ({ navigation }) => {
     const body = GetApiHelper('hotel', {})
     try {
       await getEventType(body)
-    } catch(error) {
+    } catch (error) {
       console.log('Failed to Fetch: ', error)
     }
   }
@@ -37,10 +46,8 @@ const RestaurantSelection = ({ navigation }) => {
   useEffect(() => {
     fetchApi()
   }, [])
-  
 
   const submitFilter = () => {
-
     setIsFilter(!isFilter)
   }
 
@@ -149,43 +156,54 @@ const RestaurantSelection = ({ navigation }) => {
               </View>
             </View>
           )}
-          {data.isSuccess && data?.data?.map(restaurant => (
-            <ListCard
-              title={restaurant.rest_name}
-              caption={restaurant.location}
-              key={restaurant._id}
-              imageSource={restaurant.rest_image}
-              style={[styles.marginBottom]}
-              sideComponent={<Rating rating={restaurant.rating} />}
-              onLongPressed={() => {
-                setSelectedRestaurants([
-                  ...selectedRestaurants,
-                  restaurant._id,
-                ])
-              }}
-              onPressed={() => {
-                if(selectedRestaurants.includes(restaurant._id)){
-                  setSelectedRestaurants(selectedRestaurants => {
-                    return selectedRestaurants.filter(
-                      selectedRestaurant =>
-                        selectedRestaurant != restaurant._id,
+          {data.isSuccess &&
+            data?.data?.map(restaurant => (
+              <ListCard
+                title={restaurant.rest_name}
+                caption={restaurant.location}
+                key={restaurant._id}
+                imageSource={restaurant.rest_image}
+                style={[styles.marginBottom]}
+                sideComponent={<Rating rating={restaurant.rating} />}
+                onLongPressed={() => {
+                  dispatch(
+                    add({
+                      name: restaurant.rest_name,
+                      id: restaurant._id,
+                    }),
+                  )
+                }}
+                onPressed={() => {
+                  const isSelected = hotelsSelected.find(
+                    hotel => (hotel.id == restaurant._id),
+                  )
+
+                  if (isSelected) {
+                    dispatch(
+                      remove({
+                        name: restaurant.rest_name,
+                        id: restaurant._id,
+                      }),
                     )
-                  })
-                } else {
-                  navigation.navigate("DishSelectionScreen", {
-                    "id": [restaurant._id]
-                  })
-                }
-              }}
-              isSelected={selectedRestaurants.includes(restaurant._id)}
-            />
-          ))}
+                  } else {
+                    dispatch(add({
+                      name: restaurant.rest_name,
+                      id: restaurant._id
+                    }))
+                    navigation.navigate("DishSelectionScreen")
+                  }
+                }}
+                isSelected={!!hotelsSelected.find(
+                  hotel => (hotel.id == restaurant._id),
+                )}
+              />
+            ))}
         </View>
       </ScrollView>
       <FloatingActionButton
         icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
         onPress={() => {
-          console.log('OK')
+          navigation.navigate("DishSelectionScreen")
         }}
       />
     </>
@@ -212,7 +230,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(0,0,0,0.5)',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   iconWrapepr: {
     width: 50,

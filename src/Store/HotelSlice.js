@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit'
 export const hotel = createSlice({
   name: 'hotel',
   initialState: {
-    hotel: [],
+    value: [],
   },
   reducers: {
     add: (state, action) => {
-      state.hotel = [...state.hotel, action.payload]
+      state.value = [...state.value, action.payload]
     },
     remove: (state, action) => {
-      state.hotel = state.hotel.filter(item => {
-        return item !== action.payload
+      state.value = state.value.filter(item => {
+        return item.id !== action.payload.id
       })
     },
   },
