@@ -26,7 +26,7 @@ const Rating = ({ rating }) => {
           color: '#fff',
         }}
       >
-        {rating}
+        {rating.toFixed(1)}
       </Text>
     </View>
   )

@@ -8,12 +8,14 @@ import {
   MainContainer,
   LoginScreen,
   SummaryScreen,
-  DishPollScreen
+  DishPollScreen,
 } from '../Containers/index'
 import { navigationRef } from './utils'
 import Summary from '@/Components/Summary'
 import AddParticpants from '@/Containers/AddParticipants'
 import VenueFixPoll from '@/Containers/VenueFixResult'
+import RestaurantSelection from '@/Containers/RestaurantSelection'
+import DishSelectionScreen from '@/Containers/DishSelectionScreen'
 
 const Stack = createStackNavigator()
 
@@ -24,14 +26,28 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen
+          <Stack.Screen
+            name="RestaurantSelection"
+            component={RestaurantSelection}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
+            name="DishSelectionScreen"
+            component={DishSelectionScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
             name="MainContainer"
             component={MainContainer}
             options={{
               animationEnabled: false,
             }}
           />
-        <Stack.Screen
+          <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
             options={{

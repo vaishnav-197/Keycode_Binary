@@ -20,7 +20,7 @@ import { add, remove } from '../Store/HotelSlice'
 const RestaurantSelection = ({ navigation }) => {
   const hotelsSelected = useSelector(state => state.hotel.value)
 
-  useEffect(()=> {
+  useEffect(() => {
     console.log(hotelsSelected)
   }, [hotelsSelected])
 
@@ -158,52 +158,55 @@ const RestaurantSelection = ({ navigation }) => {
           )}
           {data.isSuccess &&
             data?.data?.map(restaurant => (
-              <ListCard
-                title={restaurant.rest_name}
-                caption={restaurant.location}
-                key={restaurant._id}
-                imageSource={restaurant.rest_image}
-                style={[styles.marginBottom]}
-                sideComponent={<Rating rating={restaurant.rating} />}
-                onLongPressed={() => {
-                  dispatch(
-                    add({
-                      name: restaurant.rest_name,
-                      id: restaurant._id,
-                    }),
-                  )
-                }}
-                onPressed={() => {
-                  const isSelected = hotelsSelected.find(
-                    hotel => (hotel.id == restaurant._id),
-                  )
-
-                  if (isSelected) {
+              <View style={styles.marginBottom}>
+                <ListCard
+                  title={restaurant.rest_name}
+                  caption={restaurant.location}
+                  key={restaurant._id}
+                  imageSource={restaurant.rest_image}
+                  sideComponent={<Rating rating={restaurant.rating} />}
+                  onLongPressed={() => {
                     dispatch(
-                      remove({
+                      add({
                         name: restaurant.rest_name,
                         id: restaurant._id,
                       }),
                     )
-                  } else {
-                    dispatch(add({
-                      name: restaurant.rest_name,
-                      id: restaurant._id
-                    }))
-                    navigation.navigate("DishSelectionScreen")
+                  }}
+                  onPressed={() => {
+                    const isSelected = hotelsSelected.find(
+                      hotel => hotel.id == restaurant._id,
+                    )
+
+                    if (isSelected) {
+                      dispatch(
+                        remove({
+                          name: restaurant.rest_name,
+                          id: restaurant._id,
+                        }),
+                      )
+                    } else {
+                      dispatch(
+                        add({
+                          name: restaurant.rest_name,
+                          id: restaurant._id,
+                        }),
+                      )
+                      navigation.navigate('DishSelectionScreen')
+                    }
+                  }}
+                  isSelected={
+                    !!hotelsSelected.find(hotel => hotel.id == restaurant._id)
                   }
-                }}
-                isSelected={!!hotelsSelected.find(
-                  hotel => (hotel.id == restaurant._id),
-                )}
-              />
+                />
+              </View>
             ))}
         </View>
       </ScrollView>
       <FloatingActionButton
         icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
         onPress={() => {
-          navigation.navigate("DishSelectionScreen")
+          navigation.navigate('DishSelectionScreen')
         }}
       />
     </>
@@ -282,7 +285,7 @@ const styles = StyleSheet.create({
     color: '#4D80E4',
   },
   marginBottom: {
-    marginBottom: 12,
+    marginBottom: 16,
   },
 })
 
