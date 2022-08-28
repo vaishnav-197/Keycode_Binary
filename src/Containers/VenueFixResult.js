@@ -1,19 +1,13 @@
 // In App.js in a new project
 
 import React, { useState } from 'react'
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  FlatList,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native'
+import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { useVenuePollMutation } from '@/Api/apiSlice'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import FloatingActionButton from '@/Components/FloatingActionButton'
+import { GetApiHelper } from '@/Api/apiSlice'
 import ListCard from '@/Components/ListCard'
 import AppBar from '@/Components/AppBar'
 import { Fonts } from '@/Theme/Fonts'

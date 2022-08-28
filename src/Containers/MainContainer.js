@@ -14,7 +14,6 @@ import FloatingActionButton from '@/Components/FloatingActionButton'
 import Storage from '@/Storage'
 
 const MainContainer = ({ navigation }) => {
-  const eventSelected = useSelector(state => state.event.value)
   const dispatch = useDispatch()
   const [getEventType, data] = useGetEventTypeMutation()
   const [ checkNotif, dta ] = useGetNotificationMutation()

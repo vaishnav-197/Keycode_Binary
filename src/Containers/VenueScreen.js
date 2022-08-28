@@ -16,6 +16,9 @@ import AppBar from '../Components/AppBar'
 import SearchBar from '../Components/searchBar'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { add, remove } from '../Store/VenueSlice'
+
 // Api
 import { useGetEventTypeMutation } from '@/Api/apiSlice'
 import { GetApiHelper } from '@/Api/apiSlice'

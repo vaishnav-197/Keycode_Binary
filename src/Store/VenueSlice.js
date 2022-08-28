@@ -7,7 +7,7 @@ export const venue = createSlice({
   },
   reducers: {
     add: (state, action) => {
-      state.value = [...state.value, action.payload]
+      state.venue = state.venue.append(action.payload)
     },
     remove: (state, action) => {
       state.value = state.value.filter(item => {

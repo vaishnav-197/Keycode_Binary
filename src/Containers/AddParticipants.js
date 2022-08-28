@@ -9,7 +9,6 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  ScrollView,
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -47,7 +46,7 @@ const AddParticpants = ({ navigation }) => {
         item: currentParticipant,
       },
     ])
-    setcurrentParticipant('');
+    setcurrentParticipant('')
   }
 
   const deleteParticipantHandler = id => {
@@ -87,28 +86,9 @@ const AddParticpants = ({ navigation }) => {
           />
         </View>
 
-        <View style={styles.goalsContainer}>
-          <View>
-            <Text style={styles.goalsHeading}>Participants</Text>
-          </View>
-          <FlatList
-            data={participants}
-            renderItem={itemData => {
-              return (
-                <TouchableOpacity
-                  onPress={deleteParticipantHandler.bind(
-                    this,
-                    itemData.item.id,
-                  )}
-                >
-                  <View>
-                    <Text style={styles.goals}>{itemData.item.item} </Text>
-                  </View>
-                </TouchableOpacity>
-              )
-            }}
-            keyExtractor={item => item.id}
-          />
+      <View style={styles.goalsContainer}>
+        <View>
+          <Text style={styles.goalsHeading}>Participants</Text>
         </View>
       </ScrollView>
       <View>
@@ -123,6 +103,26 @@ const AddParticpants = ({ navigation }) => {
             />
           }
         />
+      </View>
+      <View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('VenueFixPoll', {
+              phoneNumbers: participants,
+            })
+          }}
+        >
+          <FloatingActionButton
+            icon={
+              <Icon
+                name="navigate-next"
+                color={'#fff'}
+                size={24}
+                style={styles.marginRight}
+              />
+            }
+          />
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -155,7 +155,6 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     textAlign: 'center',
     borderRadius: 10,
-    height: 40
   },
   goalsContainer: {
     flex: 5,
