@@ -22,7 +22,14 @@ export const apiSlice = createApi({
         body: body,
       }),
     }),
+    venuePoll: builder.mutation({
+      query: body => ({
+        url: '/generic',
+        method: 'POST',
+        body: body,
+      }),
+    }),
   }),
 })
 // Export the auto-generated hook for the `getPosts` query endpoint
-export const { useGetEventTypeMutation } = apiSlice
+export const { useGetEventTypeMutation, useVenuePollMutation } = apiSlice

@@ -12,7 +12,6 @@ import { useGetEventTypeMutation } from '@/Api/apiSlice'
 import { GetApiHelper } from '@/Api/apiSlice'
 
 const MainContainer = ({ navigation }) => {
-  const eventSelected = useSelector(state => state.event.value)
   const dispatch = useDispatch()
   const [getEventType, data] = useGetEventTypeMutation()
 
@@ -49,7 +48,10 @@ const MainContainer = ({ navigation }) => {
                       <ListCard
                         title={event.name}
                         imageSource={event.image}
-                        onPressed={() => dispatch(add(event.name))}
+                        onLongPressed={() => {
+                          dispatch(add(event.name))
+                          navigation.navigate('VenueScreen')
+                        }}
                       />
                     </View>
                   </>

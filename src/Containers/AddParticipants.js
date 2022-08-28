@@ -9,7 +9,6 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  ScrollView,
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -32,7 +31,7 @@ const AddParticpants = ({ navigation }) => {
         item: currentParticipant,
       },
     ])
-    setcurrentParticipant('');
+    setcurrentParticipant('')
   }
 
   const deleteParticipantHandler = id => {
@@ -43,59 +42,62 @@ const AddParticpants = ({ navigation }) => {
 
   return (
     <View style={styles.appContainer}>
-      <AppBar title="Add Decision Makers" color={'blue'}/>
-      <ScrollView>
-        <View style={styles.pageHeading}>
-          <Text style={styles.pageHeadingText}>Add Participants to Poll</Text>
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.textInput}
-            placeholder="Mobile Number"
-            onChangeText={participantInputHandler}
-          />
-          <Button
-            style={styles.addParticipants}
-            title="Add Participants"
-            onPress={addparticipantHandler}
-          />
+      <View style={styles.pageHeading}>
+        <Text style={styles.pageHeadingText}>Add Participants to Poll</Text>
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Mobile Number"
+          onChangeText={participantInputHandler}
+        />
+        <Button
+          style={styles.addParticipants}
+          title="Add Participants"
+          onPress={addparticipantHandler}
+        />
+      </View>
+
+      <View style={styles.goalsContainer}>
+        <View>
+          <Text style={styles.goalsHeading}>Participants</Text>
         </View>
 
-        <View style={styles.goalsContainer}>
-          <View>
-            <Text style={styles.goalsHeading}>Participants</Text>
-          </View>
-          <FlatList
-            data={participants}
-            renderItem={itemData => {
-              return (
-                <TouchableOpacity
-                  onPress={deleteParticipantHandler.bind(
-                    this,
-                    itemData.item.id,
-                  )}
-                >
-                  <View>
-                    <Text style={styles.goals}>{itemData.item.item} </Text>
-                  </View>
-                </TouchableOpacity>
-              )
-            }}
-            keyExtractor={item => item.id}
-          />
-        </View>
-      </ScrollView>
-      <View>
-        <FloatingActionButton
-          icon={
-            <Icon
-              name="navigate-next"
-              color={'#fff'}
-              size={24}
-              style={styles.marginRight}
-            />
-          }
+        <FlatList
+          data={participants}
+          renderItem={itemData => {
+            return (
+              <TouchableOpacity
+                onPress={deleteParticipantHandler.bind(this, itemData.item.id)}
+              >
+                <View>
+                  <Text style={styles.goals}>{itemData.item.item} </Text>
+                </View>
+              </TouchableOpacity>
+            )
+          }}
+          keyExtractor={item => item.id}
         />
+      </View>
+      <View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('VenueFixPoll', {
+              phoneNumbers: participants,
+            })
+          }}
+        >
+          <FloatingActionButton
+            icon={
+              <Icon
+                name="navigate-next"
+                color={'#fff'}
+                size={24}
+                style={styles.marginRight}
+              />
+            }
+          />
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -128,7 +130,6 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     textAlign: 'center',
     borderRadius: 10,
-    height: 40
   },
   goalsContainer: {
     flex: 5,

@@ -15,11 +15,15 @@ import BottomNavigationBar from '../Components/BottomNavigationBar'
 import AppBar from '../Components/AppBar'
 import SearchBar from '../Components/searchBar'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { add, remove } from '../Store/VenueSlice'
+
 // Api
 import { useGetEventTypeMutation } from '@/Api/apiSlice'
 import { GetApiHelper } from '@/Api/apiSlice'
 
-const VenueScreen = () => {
+const VenueScreen = ({ navigation }) => {
+  const dispatch = useDispatch()
   const [getEventType, data] = useGetEventTypeMutation()
   const [isFilter, setIsFilter] = useState(false)
   const [name, setName] = useState('')
@@ -180,6 +184,10 @@ const VenueScreen = () => {
                   title={venue.name}
                   sideComponent={venue.rating}
                   imageSource={venue.image}
+                  onLongPressed={() => {
+                    dispatch(add(venue.name))
+                    navigation.navigate('AddParticpants')
+                  }}
                 />
               )
             })}

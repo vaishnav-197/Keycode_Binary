@@ -8,7 +8,7 @@ import {
   MainContainer,
   LoginScreen,
   SummaryScreen,
-  DishPollScreen
+  DishPollScreen,
 } from '../Containers/index'
 import { navigationRef } from './utils'
 import Summary from '@/Components/Summary'
@@ -24,14 +24,14 @@ const ApplicationNavigator = () => {
       <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen
+          <Stack.Screen
             name="MainContainer"
             component={MainContainer}
             options={{
               animationEnabled: false,
             }}
           />
-        <Stack.Screen
+          <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
             options={{

@@ -1,42 +1,35 @@
 // In App.js in a new project
 
 import React, { useState } from 'react'
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  FlatList,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native'
+import { StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { useVenuePollMutation } from '@/Api/apiSlice'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import FloatingActionButton from '@/Components/FloatingActionButton'
+import { GetApiHelper } from '@/Api/apiSlice'
 import ListCard from '@/Components/ListCard'
 import AppBar from '@/Components/AppBar'
 
-const VenueFixPoll = ({ navigation }) => {
+const VenueFixPoll = ({ navigation, route }) => {
+  const { phoneNumbers } = route.params
+  const [venuePoll, data] = useVenuePollMutation()
+  const dispatch = useDispatch()
+  const eventSelected = useSelector(state => state.event.value)
+
+  const sendPoll = async () => {
+    const body = {}
+    try {
+      await venuePoll(body)
+    } catch (error) {
+      console.error('Failed to Fetch: ', error)
+    }
+  }
   return (
     <View style={styles.appContainer}>
       <AppBar title="Poll Results" />
       <ScrollView>
-        <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
-        </View>
-        <View>
-          <ListCard />
-        </View>
+        <View />
       </ScrollView>
       <View>
         <FloatingActionButton

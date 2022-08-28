@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit'
 export const event = createSlice({
   name: 'event',
   initialState: {
-    value: ['1'],
+    value: [],
   },
   reducers: {
     add: (state, action) => {
-      state.value = [...state.value, action.payload]
+      state.value = action.payload
     },
     remove: (state, action) => {
       state.hotel = state.hotel.filter(item => {
