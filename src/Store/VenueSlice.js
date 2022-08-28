@@ -3,15 +3,15 @@ import { createSlice } from '@reduxjs/toolkit'
 export const venue = createSlice({
   name: 'venue',
   initialState: {
-    venue: [],
+    value: [],
   },
   reducers: {
     add: (state, action) => {
-      state.venue = state.venue.append(action.payload)
+      state.value = [...state.value, action.payload]
     },
     remove: (state, action) => {
-      state.venue = state.venue.filter(item => {
-        return item !== action.payload
+      state.value = state.value.filter(item => {
+        return item._id !== action.payload._id
       })
     },
   },

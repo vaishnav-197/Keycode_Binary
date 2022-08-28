@@ -6,10 +6,11 @@ import BottomNavigationBar from '@/Components/BottomNavigationBar'
 import ListCard from '@/Components/ListCard'
 import SearchBar from '@/Components/searchBar'
 import AppBar from '@/Components/AppBar'
-
+import Icon from 'react-native-vector-icons/MaterialIcons'
 // Api
 import { useGetEventTypeMutation } from '@/Api/apiSlice'
 import { GetApiHelper } from '@/Api/apiSlice'
+import FloatingActionButton from '@/Components/FloatingActionButton'
 
 const MainContainer = ({ navigation }) => {
   const eventSelected = useSelector(state => state.event.value)
@@ -49,7 +50,10 @@ const MainContainer = ({ navigation }) => {
                       <ListCard
                         title={event.name}
                         imageSource={event.image}
-                        onPressed={() => dispatch(add(event.name))}
+                        onPressed={() => {
+                          dispatch(add(event.name))
+                          navigation.navigate('VenueScreen')
+                        }}
                       />
                     </View>
                   </>
@@ -60,6 +64,12 @@ const MainContainer = ({ navigation }) => {
             <></>
           )}
         </ScrollView>
+        <FloatingActionButton
+          icon={<Icon name="navigate-next" color={'#fff'} size={24} />}
+          onPress={() => {
+            navigation.navigate('VenueScreen')
+          }}
+        />
       </View>
       <BottomNavigationBar
         onSelectDining={handleDiningSelect}

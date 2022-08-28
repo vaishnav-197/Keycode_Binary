@@ -14,10 +14,13 @@ import ListCard from '@/Components/ListCard'
 import BottomNavigationBar from '../Components/BottomNavigationBar'
 import AppBar from '../Components/AppBar'
 import SearchBar from '../Components/searchBar'
+import { useDispatch, useSelector } from 'react-redux'
 
 // Api
 import { useGetEventTypeMutation } from '@/Api/apiSlice'
 import { GetApiHelper } from '@/Api/apiSlice'
+import { add, remove } from '../Store/VenueSlice'
+import FloatingActionButton from '@/Components/FloatingActionButton'
 
 const VenueScreen = () => {
   const [getEventType, data] = useGetEventTypeMutation()
@@ -29,6 +32,8 @@ const VenueScreen = () => {
   const [locality, setLocality] = useState('Kochi')
   const [budget, setBudget] = useState('2 lak')
   const [participants, setParticipants] = useState('2')
+  const venuesSelected = useSelector(state => state. venue.value)
+  const dispatch = useDispatch()
 
   const fetchApi = async () => {
     const body = GetApiHelper('venue', {})
@@ -47,6 +52,10 @@ const VenueScreen = () => {
     // call api
     setIsFilter(!isFilter)
   }
+
+  useEffect(() => {
+    console.log(venuesSelected)
+  }, [venuesSelected])
 
   return (
     <>
@@ -183,6 +192,30 @@ const VenueScreen = () => {
                   title={venue.name}
                   sideComponent={venue.rating}
                   imageSource={venue.image}
+                  onLongPressed={
+                    () => dispatch(
+                      add(venue),
+                    )
+                  }
+                  onPressed={() => {
+                    const isSelected = venuesSelected.find(
+                      venueSelected => venue._id == venueSelected._id,
+                    )
+
+                    if (isSelected) {
+                      dispatch(
+                        remove(venue),
+                      )
+                    } else {
+                      dispatch(
+                        add(venue),
+                      )
+                      navigation.navigate('DishSelectionScreen')
+                    }
+                  }}
+                  isSelected={venuesSelected.find(
+                    venueSelected => venue._id == venueSelected._id,
+                  )}
                 />
               )
             })}
@@ -198,12 +231,12 @@ const styles = StyleSheet.create({
     height: 50,
     width: '100%',
     justifyContent: 'center',
-    paddingLeft: 13
+    paddingLeft: 13,
   },
   venueTitle: {
     fontSize: 30,
     color: '#2E279D',
-    fontWeight: '600'
+    fontWeight: '600',
   },
   topBanner: {},
   filterText: {
@@ -237,9 +270,9 @@ const styles = StyleSheet.create({
   searchWrapper: {
     flex: 1,
   },
-  marginRight:{
+  marginRight: {
     marginBottom: 5,
-    marginTop: 5
+    marginTop: 5,
   },
   buttonStyle: {},
   body: {
