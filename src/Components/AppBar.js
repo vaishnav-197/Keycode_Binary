@@ -1,14 +1,29 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import { Fonts } from '@/Theme/Fonts'
 import PropTypes from 'prop-types'
 import { Layout } from '@/Theme/Layout'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const AppBar = ({ title, actions, color }) => {
+const AppBar = ({ title, actions, color, onPress, showRefresh=false }) => {
   return (
-    <View style={[styles.appBarContainer, Layout.row, color === 'blue' ? {backgroundColor: 'rgb(78,128,228)'}:{backgroundColor: 'rgb(220,48,86)'}]}>
-      <Text style={[Fonts.titleSmallBold, styles.appBarTitle, {color: 'white'}]}>{title}</Text>
-      <View>{actions.map(action => action)}</View>
+    <View style={[styles.appBarContainer, Layout.row, color === 'blue' ? {backgroundColor: 'white'}:{backgroundColor: 'white'}]}>
+      {/* <Text style={[Fonts.titleSmallBold, styles.appBarTitle, {color: 'white'}]}>{title}</Text> */}
+      {/* <View>{actions.map(action => action)}</View> */}
+      <Image
+        style={styles.tinyLogo}
+        source={require('@/Assets/Images/due.png')}
+      />
+      {showRefresh ? <TouchableOpacity onPress={onPress}>
+        <Icon
+          name="refresh"
+          color={'rgba(0,0,0,0.7)'}
+          size={25}
+          style={styles.marginRight}
+        />
+        </TouchableOpacity>: 
+        <></>}
     </View>
   )
 }
@@ -31,7 +46,7 @@ const styles = StyleSheet.create({
     left: 0,
     paddingLeft: 16,
     paddingRight: 16,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   appBarContainer: {
@@ -45,6 +60,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  tinyLogo:{
+
+  }
 })
 
 export default AppBar

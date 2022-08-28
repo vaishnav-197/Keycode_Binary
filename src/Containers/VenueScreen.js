@@ -171,6 +171,9 @@ const VenueScreen = () => {
               </View>
             </View>
           )}
+          <View style={styles.headerContainer}>
+            <Text style={styles.venueTitle}>Venue</Text>
+          </View>
           {data.isSuccess &&
             data.data.map(venue => {
               return (
@@ -190,6 +193,18 @@ const VenueScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    marginTop: 30,
+    height: 50,
+    width: '100%',
+    justifyContent: 'center',
+    paddingLeft: 13
+  },
+  venueTitle: {
+    fontSize: 30,
+    color: '#2E279D',
+    fontWeight: '600'
+  },
   topBanner: {},
   filterText: {
     color: '#2E279D',
@@ -221,6 +236,10 @@ const styles = StyleSheet.create({
   },
   searchWrapper: {
     flex: 1,
+  },
+  marginRight:{
+    marginBottom: 5,
+    marginTop: 5
   },
   buttonStyle: {},
   body: {
