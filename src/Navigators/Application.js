@@ -51,6 +51,13 @@ const ApplicationNavigator = () => {
             }}
           />
           <Stack.Screen
+            name="UpcomingEventScreen"
+            component={UpcomingEventScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen
             name="DishSelectionScreen"
             component={DishSelectionScreen}
             options={{

@@ -42,16 +42,18 @@ const MainContainer = ({ navigation }) => {
     }
   }
 
+  let a 
+
   useEffect(() => {
     fetchApi()
     setInterval(async () => {
-      console.log('hello')
       checkNotification()
     }, 2000)
   }, [])
 
   useEffect(() => {
-    if(dta?.data.length > 0) {
+    clearInterval(a)
+    if(dta?.data?.length > 0) {
       navigation.navigate('UpcomingEventScreen', {
         data: dta?.data
       })
