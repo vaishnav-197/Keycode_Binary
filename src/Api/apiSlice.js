@@ -12,7 +12,7 @@ export const GetApiHelper = (context, filter) => {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://modern-seals-camp-103-142-31-94.loca.lt/',
+    baseUrl: 'https://dirty-pears-swim-103-142-31-94.loca.lt/',
   }),
   endpoints: builder => ({
     getEventType: builder.mutation({

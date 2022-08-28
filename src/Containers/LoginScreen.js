@@ -6,88 +6,99 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Image
+  Image,
 } from 'react-native'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import AppBar from '../Components/AppBar'
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
+  const [mobileNumber, setMobileNumber] = useState(false)
+  const [otp, setOtp] = useState('')
+  const [isMobCompleted, setMobCompleted] = useState(false)
 
-  const [mobileNumber, setMobileNumber] = useState(false);
-  const [otp, setOtp] = useState('');
-  const [isMobCompleted, setMobCompleted] = useState(false);
-
-
-
-  const onPressLogin = () =>{
-    //navigate here
+  const onPressLogin = () => {
+    navigation.navigate('MainContainer')
   }
 
-  const setMobOnPress = () =>{
+  const setMobOnPress = () => {
     setMobCompleted(true)
   }
 
   return (
     <>
-    <View style={styles.container}>
-      <View style={styles.containerWrapper}>
-      <View style={styles.logoWrapper}>
-      <Image
-        style={styles.tinyLogo}
-        source={require('@/Assets/Images/due.png')}
-      />
+      <View style={styles.container}>
+        <View style={styles.containerWrapper}>
+          <View style={styles.logoWrapper}>
+            <Image
+              style={styles.tinyLogo}
+              source={require('@/Assets/Images/due.png')}
+            />
+          </View>
+          {!isMobCompleted ? (
+            <>
+              <View style={styles.mobileWrapper}>
+                <View style={styles.inputWrapper}>
+                  <TextInput
+                    style={styles.input}
+                    value={mobileNumber}
+                    placeholder={'Phone'}
+                    onChangeText={setMobileNumber}
+                  />
+                  <Icon
+                    name="phone-enabled"
+                    color={'#000'}
+                    size={20}
+                    style={styles.marginRight}
+                  />
+                </View>
+              </View>
+              <View style={styles.mobileWrapper}>
+                <View style={styles.button}>
+                  <TouchableOpacity onPress={setMobOnPress}>
+                    <Text style={styles.buttonText}>Next</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </>
+          ) : (
+            <>
+              <View style={styles.mobileWrapper}>
+                <View style={styles.inputWrapper}>
+                  <TextInput
+                    style={styles.input}
+                    placeholder={'OTP'}
+                    value={otp}
+                    onChangeText={setOtp}
+                  />
+                  <Icon
+                    name="message"
+                    color={'#000'}
+                    size={20}
+                    style={styles.marginRight}
+                  />
+                </View>
+              </View>
+              <View style={styles.mobileWrapper}>
+                <View style={styles.button}>
+                  <TouchableOpacity onPress={onPressLogin}>
+                    <Text style={styles.buttonText}>Login</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.tryAgain}>
+                  <TouchableOpacity>
+                    <Text>Didn't recieve OTP?</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text style={styles.sendAgain}>Send again</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </>
+          )}
+        </View>
       </View>
-      {!isMobCompleted ? <>
-      <View style={styles.mobileWrapper}>
-      <View style={styles.inputWrapper}>
-        <TextInput style={styles.input} value={mobileNumber} placeholder={'Phone'} onChangeText={setMobileNumber}/>
-        <Icon
-          name="phone-enabled"
-          color={'#000'}
-          size={20}
-          style={styles.marginRight}
-        />
-      </View>
-      </View>
-      <View style={styles.mobileWrapper}>
-      <View style={styles.button}>
-        <TouchableOpacity onPress={setMobOnPress}>
-        <Text style={styles.buttonText}>
-          Next
-        </Text>
-        </TouchableOpacity>
-      </View>
-      </View>
-      </>: <>
-      <View style={styles.mobileWrapper}>
-      <View style={styles.inputWrapper}>
-        <TextInput style={styles.input} placeholder={'OTP'}  value={otp}  onChangeText={setOtp}/>
-        <Icon
-          name="message"
-          color={'#000'}
-          size={20}
-          style={styles.marginRight}
-        />
-      </View>
-      </View>
-      <View style={styles.mobileWrapper}>
-      <View style={styles.button}>
-      <TouchableOpacity onPress={onPressLogin}>
-        <Text style={styles.buttonText}>
-          Login
-        </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.tryAgain}>
-      <TouchableOpacity><Text>Didn't recieve OTP?</Text></TouchableOpacity>
-      <TouchableOpacity><Text style={styles.sendAgain}>Send again</Text></TouchableOpacity>
-      </View>
-      </View>
-      </>}
-    </View>
-    </View>
     </>
   )
 }
@@ -104,11 +115,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logoWrapper:{
+  logoWrapper: {
     width: '100%',
     height: 100,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   button: {
     height: 50,
@@ -117,14 +128,14 @@ const styles = StyleSheet.create({
     marginTop: 30,
     backgroundColor: 'rgb(91,120,213)',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   tryAgain: {
     marginTop: 10,
     height: 50,
     width: 300,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   container: {
     height: '100%',
@@ -132,17 +143,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     paddingTop: 60,
     alignItems: 'center',
-    marginTop: '20%'
+    marginTop: '20%',
     // justifyContent: 'center'
   },
-  mobileWrapper:{
-    marginTop: 20
+  mobileWrapper: {
+    marginTop: 20,
   },
-  phone:{
+  phone: {
     color: 'rgba(0,0,0,0.8)',
     fontSize: 15,
   },
-  inputWrapper:{
+  inputWrapper: {
     height: 50,
     width: 300,
     borderWidth: 0.5,
@@ -152,18 +163,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  input:{
+  input: {
     flex: 1,
   },
   tinyLogo: {
     height: 120,
-    aspectRatio: 93/80
+    aspectRatio: 93 / 80,
   },
-  buttonText:{
+  buttonText: {
     color: 'white',
     fontSize: 20,
-    fontWeight: '500'
-  }
+    fontWeight: '500',
+  },
 })
 
-export default LoginScreen;
+export default LoginScreen
