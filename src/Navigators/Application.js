@@ -16,6 +16,7 @@ import AddParticpants from '@/Containers/AddParticipants'
 import VenueFixPoll from '@/Containers/VenueFixResult'
 import RestaurantSelection from '@/Containers/RestaurantSelection'
 import DishSelectionScreen from '@/Containers/DishSelectionScreen'
+import UpcomingEventScreen from '@/Containers/UpcomingEventScreen'
 
 const Stack = createStackNavigator()
 
@@ -75,7 +76,13 @@ const ApplicationNavigator = () => {
               animationEnabled: false,
             }}
           />
-
+          <Stack.Screen
+            name="UpcomingEventScreen"
+            component={UpcomingEventScreen}
+            options={{
+              animationEnabled: false,
+            }}
+          />
           <Stack.Screen
             name="SummaryScreen"
             component={SummaryScreen}
@@ -100,13 +107,6 @@ const ApplicationNavigator = () => {
           />
           <Stack.Screen
             name="SuggestionScreen"
-            component={SuggestionScreen}
-            options={{
-              animationEnabled: false,
-            }}
-          />
-          <Stack.Screen
-            name="FoodPollScreen"
             component={SuggestionScreen}
             options={{
               animationEnabled: false,
